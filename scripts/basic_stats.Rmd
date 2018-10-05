@@ -1,44 +1,109 @@
+---
+title: "Basic_stats"
+author: "Lushi Chen"
+date: "3 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
 require(dplyr)
 require(tidyverse)
 require(effsize)
 require(moments)
+```
 
+## R Markdown
+resample_5000 is the label file of the sample. The sample is selected with sampling_strategy.Rmd
+variables in the file include 
+text, negative_emo, distortion(boolean), repost(boolean), negative_thinking(boolean), post_time, time_diff
+time_diff: 
+
+scale files include: userid,ethnicity,marital_status, parents_together, gender, age, relationship_status, timezone, ope, con, ext, agr, neu, swl, CESD_sum, conformity,tradition, benevolence, universalism, self_direction, stimulation, hedonism, achievement, power
+
+```{r cars}
+#set working directory 
 setwd('~/phd_work/mypersonality_data/cognitive_distortion/')
+
 labels <- read.csv("./data/resample_5000.csv", header = T, fill=TRUE,row.names=NULL) %>%
   dplyr::select(userid, text, negative_emo, distortion, repost, negative_thinking, post_time, time_diff)
 
 scales <-  read.csv("./data/user_scale_post_time2.csv", header = T, fill=TRUE,row.names=NULL) %>%
   dplyr::select(userid,ethnicity,marital_status, parents_together, gender, age, relationship_status, timezone, ope, con, ext, agr, neu, swl, CESD_sum, conformity,tradition, benevolence, universalism, self_direction, stimulation, hedonism, achievement, power)
-  
-#merge scales
+
+```
+
+merge scales with label file 
+```{r pressure, echo=FALSE}
+#merge scales and compute the number of posts in each user in the select sample
 label_scale <- merge(labels, scales, by = 'userid')
 post_count <- aggregate(data.frame(count = label_scale$userid), list(value = label_scale$userid), length)
 colnames(post_count) <- c('userid','post_count')
 
 label_scale2 <- merge(post_count, label_scale, by = 'userid')
 #label_scale2 <- subset(label_scale2, label_scale2$post_count >=20)
-#compute emotion score  sum/num.post
+```
+
+Is there negative emotion from the author ?  (1: Yes, 2:No, 3: Mixed)
+Label Cognitive Distortion (1: Yes, 2:No)
+Here we aggregate the negative emotion
+(Must convert negative emotion as boolean then do correlation, recode this part)
+
+```{r negative emotion}
+#solution 1: convert mixed emotion to 1
+label_scale2$negative_emo[label_scale2$negative_emo==3] <- 1
+#count the number of posts with negative emotion in each user
+
 neg_emo_score <- aggregate(data.frame(neg_emo_score = label_scale2$negative_emo == 1), list(userid = label_scale2$userid), sum)
-neg_emo_score_m <- aggregate(data.frame(neg_emo_score = label_scale2$negative_emo == 3), list(userid = label_scale2$userid), sum)
 
-neg_emo_score <- merge(neg_emo_score, neg_emo_score_m, by = 'userid') 
-colnames(neg_emo_score) <- c('userid', 'neg','mix')
-neg_emo_score$negative_score <- neg_emo_score$neg+ neg_emo_score$mix
+#normalize the negative emotion score by number of posts
 label_emo <- merge(neg_emo_score, label_scale2, by = 'userid')
+label_emo$negative_emo_score2  <- label_emo$neg_emo_score/label_emo$post_count
 
-#per post 
-label_emo$negative_emo_score2  <- label_emo$negative_score/label_emo$post_count
-#per day score
-label_emo$negative_emo_score3  <- label_emo$negative_score/60
+# mixed of positive and negative emotion
+#neg_emo_score_m <- aggregate(data.frame(neg_emo_score = label_scale2$negative_emo == 3), list(userid = label_scale2$userid), sum)
 
+#neg_emo_score <- merge(neg_emo_score, neg_emo_score_m, by = 'userid') 
+#colnames(neg_emo_score) <- c('userid', 'neg','mix')
+
+##adding up negative emotion score and mixed score? doesn't make sense
+#neg_emo_score$negative_score <- neg_emo_score$neg + neg_emo_score$mix
+```
+
+```{r}
+#solution 2: convert mixed emotion to 1
+label_scale2 <- merge(post_count, label_scale, by = 'userid')
+label_scale2$negative_emo[label_scale2$negative_emo==3] <- 2
+
+#count the number of posts with negative emotion in each user
+
+neg_emo_score_s2 <- aggregate(data.frame(neg_emo_score = label_scale2$negative_emo == 1), list(userid = label_scale2$userid), sum)
+
+#normalize the negative emotion score by number of posts
+label_emo_s2 <- merge(neg_emo_score_s2, label_emo, by = 'userid')
+label_emo_s2$negative_emo_score_s2  <- label_emo$neg_emo_score/label_emo$post_count
+
+```
+
+recode this part
+count the number of negative emotion posts in each user then do correlation
+compute correlation between 
+1. negative emotion and CESD
+2. negatibe emotion and SWL
+
+
+```{r}
 #remove duplicate then compute correlation
 label_emo2 <- label_emo[!duplicated(label_emo$userid),]
+#1. per post level negative emotion and CESD
 cor.test(label_emo2$negative_emo_score2, label_emo2$CESD_sum)
 #0.1232792   p-value = 0.2854
+cor.test(label_emo2$negative_emo_score_s2, label_emo2$CESD_sum)
+# 0.203759  p-value < 2.2e-16
+
+# 2. per post level negative emotion and SWL
 cor.test(label_emo2$negative_emo_score2, label_emo2$swl)
 
-
-##per day value, intead of per post
+# 3. per day negative emotion and SWL
 cor.test(label_emo2$negative_score, label_emo2$CESD_sum)
 #0.192121 p-value = 0.09415
 mean(label_emo2$negative_score)
@@ -52,7 +117,9 @@ label_emo <- merge(dis_score, label_emo, by = 'userid')
 label_emo$distortion_score <- label_emo$dis_score/label_emo$post_count
 
 label_emo$distortion_score2 <- label_emo$dis_score/60
+```
 
+```{r}
 #remove duplicate the compute correlation
 label_emo2 <- label_emo[!duplicated(label_emo$userid),]
 cor.test(label_emo2$distortion_score, label_emo2$CESD_sum)
@@ -784,5 +851,4 @@ write.csv(c, "liwc_cor.csv")
 
 
 
-
-
+```
