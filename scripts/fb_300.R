@@ -5,26 +5,26 @@ date: "12 3 2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}  
+ 
 require(data.table)
 require(dplyr)
 require(tidyverse)
 
-```
 
-```{r load-data}
+
 #FB posts from users completed CES-D scale 
-all_status <- read.csv("user_status_match_dep.csv", header = T, fill=TRUE,row.names=NULL)
+all_status <- read.csv("./data/user_status_match_dep.csv", header = T, fill=TRUE,row.names=NULL)
 colnames(all_status) <- c('num1', 'userid','post_time','text', 'num2')
 
 #User completed CES-D, demographic information, Big 5, schwartz  and SWL scale, here we refer them as 'the selected group'
-status_300 <- read.csv("status_dep_demog_big5_schwartz_swl_like.csv", header = T, fill=TRUE,row.names=NULL)
+status_300 <- read.csv("./data/status_dep_demog_big5_schwartz_swl_like.csv", header = T, fill=TRUE,row.names=NULL)
 
 #select userid of the selected group
 status_300 %>% dplyr::select(userid) -> status_3
 
 #compute the total number of posts of each user in the selected group
 selected <- merge(all_status, status_3, by = 'userid') %>% dplyr::select(userid, post_time, text)
+uni <- unique(selected$userid)
 post_count <- aggregate(data.frame(count = selected$userid), list(value = selected$userid), length)
 colnames(post_count) <- c('userid','post_count')
 
