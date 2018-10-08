@@ -51,5 +51,13 @@ Regular users whose last post is less than a week before their CES-D posts (90):
 
 The sample we used for labelling contains 4154 users, duplicated or empty posts were removed
 
+-------
+
+Anotation guideline:
+
+https://docs.google.com/document/d/1wxRl3oxA1lckaboBIf2SUt7Zej4hL-SEdjwmqRvB3RQ/edit?usp=sharing
 
 
+Labels
+
+https://docs.google.com/spreadsheets/d/1HfO-50VezOqM6Mjt9v_aHfE2wy-B9jkzi13blHJelQU/edit?usp=sharing
