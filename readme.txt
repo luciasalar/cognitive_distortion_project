@@ -52,12 +52,15 @@ Regular users whose last post is less than a week before their CES-D posts (90):
 
 
 The sample we used for labelling contains 4154 users, duplicated or empty posts were removed
+MARIA: Is that posts or users? 
 
 -------
 
-Anotation guideline:
+Annotation guideline:
 
 https://docs.google.com/document/d/1wxRl3oxA1lckaboBIf2SUt7Zej4hL-SEdjwmqRvB3RQ/edit?usp=sharing
+
+MARIA: The annotation guideline should be moved to GitHub
 
 
 Labels
