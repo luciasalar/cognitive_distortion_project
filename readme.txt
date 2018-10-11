@@ -5,6 +5,8 @@ This project contains 4 folders:
 3. paper
 4. prediction model
 
+MARIA: It also contains a data folder. What is in the data folder, where does it come from 
+
 
 1. scripts
 data selection process: 
