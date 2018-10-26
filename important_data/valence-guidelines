@@ -1,0 +1,33 @@
+Annotation manual suggestion for Valence 
+
+Read each post carefully and find all words and phrases that express positive or negative emotions.
+If you can only find emotion words and phrases that express positive emotions, choose "positive". 
+If you can only find emotion words and phrases that express negative emotions, choose "negative".
+If you can find both negative and positive emotion words and phrases, choose "mixed".
+If you can find no emotion words or phrases, choos "none". 
+
+Examples
+* I am *delighted* with the decision to equip 150 of our stores with solar panels. (1)
+* We *hate* to waste resources of any kind. (1)
+
+
+Annotation instructions
+The following instructions explain the criteria you should follow when annotating emotion words and phrases.
+
+1. Emotions can be expressed using any word form, including nouns, adjectives, verbs and adverbs.
+
+2. Emotions  can be expressed by just one word, but they can also span more than one word. For example:
+* I am *very proud*
+
+3. Emotions should only be those of the writer. Do not consider emotions that are attributed to someone else.
+
+4. Hypotheticality. *Do not* annotate emotion words or phrases that refer to hypothetical/imagined scenarios. Annotate only instances that express an actual emotion/feeling felt by somebody. For example:
+• Co-workers are encouraged to raise concerns they might have. [hypothetical: unclear if co-workers actually have concerns]
+• In FY13 we will launch the IKEA trust line, which co-workers will be able to use to raise concerns.
+Annotate only those instances where a real, actual emotion is expressed or attributed. For instance:
+• I is *concerned* about climate change.
+
+5. Annotate only the words and expressions that convey emotions explicitly. Leave out ‘factual’ expressions that may provoke an emotion or that are commonly used to refer to emotionally loaded events. For example:
+• In 2009 there were two fatalities at sites operated by BP.
+• In the days after the accident in the Gulf of Mexico the company faced a complex and fast-changing crisis.
+• A sequence of failures involving a number of different parties led to the explosion and fire.
