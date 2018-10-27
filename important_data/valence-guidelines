@@ -1,33 +1,50 @@
 Annotation manual suggestion for Valence 
 
-Read each post carefully and find all words and phrases that express positive or negative emotions.
-If you can only find emotion words and phrases that express positive emotions, choose "positive". 
-If you can only find emotion words and phrases that express negative emotions, choose "negative".
-If you can find both negative and positive emotion words and phrases, choose "mixed".
-If you can find no emotion words or phrases, choos "none". 
+Valence derives from a person-situation relation. More precisely, it derives from a person processing a situational input. In this task, you need to identify the valence a post author ascribes to the event or the valence from the post author's emotion.
+
+Annotation instructions
+The following instructions explain the criteria you should follow when annotating valence words and phrases.
+
+
+1. Valence can be expressed using any word form, including nouns, adjectives, verbs and adverbs and even emoticon.
+
+2. Valence  can be expressed by just one word, but they can also span more than one word. For example:
+* I am *very proud*
+
+Read each post carefully and find all words and phrases that express positive or negative valence.
+If you can only find  words and phrases that express positive valence, choose "Positive". 
+If you can only find  words and phrases that express negative valence, choose "Negative".
+If you can find  words and phrases that express both positive and negative valence, choose "Mixed".
 
 Examples
 * I am *delighted* with the decision to equip 150 of our stores with solar panels. (1)
 * We *hate* to waste resources of any kind. (1)
 
 
-Annotation instructions
-The following instructions explain the criteria you should follow when annotating emotion words and phrases.
+If you cannot find  words and phrases that express valence, check the below principles that guide your judgement.
+If the post author didn't ascribe valence to the event...
 
-1. Emotions can be expressed using any word form, including nouns, adjectives, verbs and adverbs.
+1. Does the event facilitate a goal?  (If yes, choose "Positive")
 
-2. Emotions  can be expressed by just one word, but they can also span more than one word. For example:
-* I am *very proud*
+2. Does the event associate with another event with a valence representation?
+For example:
+'Jack didn't shower today' is likely to be associated with smell badly.
 
-3. Emotions should only be those of the writer. Do not consider emotions that are attributed to someone else.
+3. Does the event associated with valence representation when compared with a reference point?
+For example:
+A student who compares his exam score 80 out of 100 to the score of his classmates is likely to evalute it positively when his mean score of the class is 70.
 
-4. Hypotheticality. *Do not* annotate emotion words or phrases that refer to hypothetical/imagined scenarios. Annotate only instances that express an actual emotion/feeling felt by somebody. For example:
-• Co-workers are encouraged to raise concerns they might have. [hypothetical: unclear if co-workers actually have concerns]
-• In FY13 we will launch the IKEA trust line, which co-workers will be able to use to raise concerns.
-Annotate only those instances where a real, actual emotion is expressed or attributed. For instance:
-• I is *concerned* about climate change.
+4. If 1-3 don't apply, make inferences about the valence of the event based on your response to the event.
 
-5. Annotate only the words and expressions that convey emotions explicitly. Leave out ‘factual’ expressions that may provoke an emotion or that are commonly used to refer to emotionally loaded events. For example:
-• In 2009 there were two fatalities at sites operated by BP.
-• In the days after the accident in the Gulf of Mexico the company faced a complex and fast-changing crisis.
-• A sequence of failures involving a number of different parties led to the explosion and fire.
+
+If you cannot find  words and phrases that express valence and the above principles do not applied, choose "Neutral"
+
+reference:
+Brendl, C. M., & Higgins, E. T. (1996). Principles of judging valence: What makes events positive or negative?. In Advances in experimental social psychology (Vol. 28, pp. 95-160). Academic Press.
+
+
+
+
+
+
+
