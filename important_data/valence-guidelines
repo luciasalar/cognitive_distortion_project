@@ -1,43 +1,55 @@
 Annotation manual suggestion for Valence 
 
-Valence derives from a person-situation relation. More precisely, it derives from a person processing a situational input. In this task, you need to identify the valence a post author ascribes to the event or the valence from the post author's emotion.
+Valence refers to the positivity or negativity from a person processing a situational input. Valence derives from a person-situation relation. In this task, you need to identify the valence of the post author or valence that a post author ascribes to the event.
 
-Annotation instructions
-The following instructions explain the criteria you should follow when annotating valence words and phrases.
+Annotation instructions:
+The following instructions explain the criteria you should follow when annotating valence.
 
+1. Valence can be identified with valence representations:
+* Valence representations can be any word form or phrases, including nouns, adjectives, verbs and adverbs and even emoticon.
+Example: 
+I am *very proud*
 
-1. Valence can be expressed using any word form, including nouns, adjectives, verbs and adverbs and even emoticon.
-
-2. Valence  can be expressed by just one word, but they can also span more than one word. For example:
-* I am *very proud*
-
-Read each post carefully and find all words and phrases that express positive or negative valence.
-If you can only find  words and phrases that express positive valence, choose "Positive". 
-If you can only find  words and phrases that express negative valence, choose "Negative".
-If you can find  words and phrases that express both positive and negative valence, choose "Mixed".
-
-Examples
-* I am *delighted* with the decision to equip 150 of our stores with solar panels. (1)
-* We *hate* to waste resources of any kind. (1)
+Note that verbs can also be representation of valence:
+Example:
+My goldfish *died*. 
 
 
-If you cannot find  words and phrases that express valence, check the below principles that guide your judgement.
-If the post author didn't ascribe valence to the event...
+2. If there's no obvious valence representation, pay attention to points below: 
+* Negative valence is usually linked to threats (fear, anxiety), loss, nonreward.
+Example:
+I didn't get the first place this time. (nonreward)
 
-1. Does the event facilitate a goal?  (If yes, choose "Positive")
+* Positive valence is often reward related.
+I finished all the assignments. (reward)
+My grandmother gave me a pretty necklace. (reward)
 
-2. Does the event associate with another event with a valence representation?
-For example:
-'Jack didn't shower today' is likely to be associated with smell badly.
 
-3. Does the event associated with valence representation when compared with a reference point?
+* Is the event associated with valence representations when compared with a reference point?
 For example:
 A student who compares his exam score 80 out of 100 to the score of his classmates is likely to evalute it positively when his mean score of the class is 70.
 
-4. If 1-3 don't apply, make inferences about the valence of the event based on your response to the event.
+If the above points do not apply, consider this:
+* Can you make inferences about the valence of an event based on someone's response (self or others) to the event?
+'Jack didn't shower today'. (Negative) 
+This event is likely to induce negative response from people around the person because of the bad smell.
+
+'He sits in a tiny box'. (Negative)
+This event is likely to induce negative response from the readers because sitting in a tiny box is uncomfortable.
 
 
-If you cannot find  words and phrases that express valence and the above principles do not applied, choose "Neutral"
+Now, label the posts according to the following instructions:
+
+If the post indicates positive valence only, choose "Positive". 
+If the post indicates negative valence only, choose "Negative".
+If the post indicates both positive and negative valence, choose "Mixed".
+If the post does not indicate any valence, choose "Neutral"
+
+Examples
+* I am *delighted* with the decision to equip 150 of our stores with solar panels. "Positive".
+* We *hate* to waste resources of any kind. "Negative"
+
+
 
 reference:
 Brendl, C. M., & Higgins, E. T. (1996). Principles of judging valence: What makes events positive or negative?. In Advances in experimental social psychology (Vol. 28, pp. 95-160). Academic Press.
