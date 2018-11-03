@@ -1,12 +1,17 @@
-Annotation manual suggestion for Valence 
+VALENCE ANNOTATION GUIDELINE
 
-Valence refers to the positivity or negativity from a person processing a situational input. Valence derives from a person-situation relation. In this task, you need to identify the valence of the post author or valence that a post author ascribes to the event.
+PRIMARY TARGET OF OPINION (PTO) : the entity towards which speaker's attitude can be determined. The entity can be a person, situation or event
+
+VALENCE refers to the positivity or negativity or negativity of the PTO. 
+
+In this task, you need to identify the valence (positivity or negativity) of the post author's emotion or valence (positivity or negativity) that a post author ascribes to the event.
 
 Annotation instructions:
 The following instructions explain the criteria you should follow when annotating valence.
 
-1. Valence can be identified with valence representations:
-* Valence representations can be any word form or phrases, including nouns, adjectives, verbs and adverbs and even emoticon.
+1. Valence can be identified with valence representations. 
+
+*Valence representations can be any word form or phrases, including nouns, adjectives, verbs and adverbs and even emoticon. 
 Example: 
 I am *very proud*
 
@@ -14,45 +19,52 @@ Note that verbs can also be representation of valence:
 Example:
 My goldfish *died*. 
 
+*The valence representations could describe the emotions of the author or the author's attitudes towards the PTO.
 
-2. If there's no obvious valence representation, pay attention to points below: 
-* Negative valence is usually linked to threats (fear, anxiety), loss, nonreward.
+Example:
+I am very *sad*. (author's emotion)
+I *hate* waking up so early this morning. (author's attitude towards a PTO)
+
+
+2. In some situations, there is not valence representations in the sentence but the PTO have strong associations with positive or negative valence. What best describes the valence of the PTO on most people?
+
+* For PTO that is usually associated with threats (fear, anxiety), loss, nonreward and anger, annoyed or other negative emotions, label the post as negative. 
 Example:
 I didn't get the first place this time. (nonreward)
+Answer: negative
 
-* Positive valence is often reward related.
+Arggh! When will politicians learn to govern? (annoyed)
+Answer: negative (since there is sufficient indication that the speaker is frustrated)
+
+The war has displaced millions. (anger)
+Answer: negative (this event is predominantly negative)
+
+* For PTO that is associated with reward or positive emotions, label the post as positive.
 I finished all the assignments. (reward)
 My grandmother gave me a pretty necklace. (reward)
+Answer: positive 
 
+We need a diplomat like Kissinger
+Answer: positive (We can infer that the speaker has a positive attitude towards Kissinger.)
 
-* Is the event associated with valence representations when compared with a reference point?
-For example:
-A student who compares his exam score 80 out of 100 to the score of his classmates is likely to evalute it positively when his mean score of the class is 70.
-
-If the above points do not apply, consider this:
-* Can you make inferences about the valence of an event based on someone's response (self or others) to the event?
-'Jack didn't shower today'. (Negative) 
-This event is likely to induce negative response from people around the person because of the bad smell.
-
-'He sits in a tiny box'. (Negative)
-This event is likely to induce negative response from the readers because sitting in a tiny box is uncomfortable.
-
-
-Now, label the posts according to the following instructions:
+-------------
+Now label the posts according to the following instructions:
 
 If the post indicates positive valence only, choose "Positive". 
 If the post indicates negative valence only, choose "Negative".
 If the post indicates both positive and negative valence, choose "Mixed".
 If the post does not indicate any valence, choose "Neutral"
 
-Examples
-* I am *delighted* with the decision to equip 150 of our stores with solar panels. "Positive".
-* We *hate* to waste resources of any kind. "Negative"
-
 
 
 reference:
 Brendl, C. M., & Higgins, E. T. (1996). Principles of judging valence: What makes events positive or negative?. In Advances in experimental social psychology (Vol. 28, pp. 95-160). Academic Press.
+
+Mohammad, S. (2016). A practical guide to sentiment annotation: Challenges and solutions. In Proceedings of the 7th Workshop on Computational Approaches to Subjectivity, Sentiment and Social Media Analysis (pp. 174-179).
+
+
+
+
 
 
 
