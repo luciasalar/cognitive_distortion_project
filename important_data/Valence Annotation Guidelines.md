@@ -31,7 +31,7 @@ Valence is determined as follows:
   * Mixed: I am *so proud* to start a new chapter in my life, but *really sad* to leave my hometown. 
   * Neutral: I had pasta today.
 
-* If the author does not express any positive or negative attitude, but the primary target of opinion has strong associations with positive or negative valence. In that case, use these associations to determine valence. Consider the valence that the primary target of opinion has for most poeple in Western culture. 
+* If the author does not express any positive or negative attitude using obvious valenced words (e.g. adjectives, emoji, verbs), but the primary target of opinion has strong associations with positive or negative valence. These words usually has valence as part of their meanings, for example, *die*, *Nazi*.  In that case, use these associations to determine valence. Consider the valence that the primary target of opinion has for most poeple in Western culture. 
 
   Don't over interpret the valence of the primary target of opinion, just go with your primary intuition. If you need a second thought to identify whether it might be positive or negative, or when there are multiple possible interpretations, label it neutral.
 
