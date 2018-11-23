@@ -31,9 +31,9 @@ Valence is determined as follows:
   * Mixed: I am *so proud* to start a new chapter in my life, but *really sad* to leave my hometown. 
   * Neutral: I had pasta today.
 
-* If the author does not express any positive or negative attitude using obvious valenced words (e.g. adjectives, emoji, verbs), but the primary target of opinion has strong associations with positive or negative valence. These words usually has valence as part of their meanings, for example, *die*, *Nazi*.  In that case, use these associations to determine valence. Consider the valence that the primary target of opinion has for most poeple in Western culture. 
+* If the author does not express any positive or negative attitude using obvious valenced words (e.g. adjectives, emoji, verbs), but the primary target of opinion has strong associations with positive or negative valence. These words usually have valence as part of their meanings, for example, *die*, *nuisance*, *disgusting* (negative) or *cherish*, *blessing*, *wonderful* (positive).  In that case, use these associations to determine valence. Consider the valence that the primary target of opinion has for most people in Western culture. 
 
-  Don't over interpret the valence of the primary target of opinion, just go with your primary intuition. If you need a second thought to identify whether it might be positive or negative, or when there are multiple possible interpretations, label it neutral.
+  Don't over interpret the valence of the primary target of opinion, just go with your primary intuition. If you need a second thought to identify whether it might be positive or negative, or when there are multiple possible interpretations, label it as neutral.
 
   + If the primary target of opinion is usually associated with a lack of reward, threat, fear, anxiety, loss, anger, annoyance, or  other negative emotions, label the post as negative. Examples:
 
@@ -47,7 +47,7 @@ Valence is determined as follows:
      * I finished all the assignments on time. (accomplishment)
      * I got an A on my exam. (reward)
      * My grandmother gave me a pretty necklace. (reward, indication of positive assessment of necklace)
-	 * We need a diplomat like him. (We can infer that the speaker has a positive attitude towards the person.)
+     * We need a diplomat like him. (We can infer that the speaker has a positive attitude towards the person.)
 
 As you have seen, valence can be represented by any word form or phrase. This includes nouns, adjectives, verbs, adverbs, and even emoticons. 
 
