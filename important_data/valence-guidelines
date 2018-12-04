@@ -2,9 +2,12 @@ VALENCE ANNOTATION GUIDELINE
 
 PRIMARY TARGET OF OPINION (PTO) : the entity towards which speaker's attitude can be determined. The entity can be a person, situation or event
 
+valence representation: valence word that describe emotions. e.g. angry, anger, hate
+
+
 VALENCE refers to the positivity or negativity or negativity of the PTO. 
 
-In this task, you need to identify the valence (positivity or negativity) of the post author's emotion or valence (positivity or negativity) that a post author ascribes to the event.
+In this task, you need to identify the valence (positivity or negativity) of the post author's emotion or valence that a post author ascribes to the PTO.
 
 Annotation instructions:
 The following instructions explain the criteria you should follow when annotating valence.
@@ -26,7 +29,7 @@ I am very *sad*. (author's emotion)
 I *hate* waking up so early this morning. (author's attitude towards a PTO)
 
 
-2. In some situations, there is not valence representations in the sentence but the PTO have STRONG associations with positive or negative valence. However, don't over interpret the valence of the PTO, go with your primary intuition. If you need a second thought to identify whether it's positive or negative, label it neutral.
+2. In some situations, there is not valence representation in the sentence but the PTO have STRONG associations with valence. However, don't over interpret the valence of the PTO, go with your primary intuition. If you need a second thought to identify whether it's positive or negative, label it unknown.
 Consider this: What best describes the valence of the PTO on most people?
 
 * For PTO that is usually associated with threats (fear, anxiety), loss, nonreward and anger, annoyed or other negative emotions, label the post as negative. 
@@ -54,7 +57,7 @@ Now label the posts according to the following instructions:
 If the post indicates positive valence only, choose "Positive". 
 If the post indicates negative valence only, choose "Negative".
 If the post indicates both positive and negative valence, choose "Mixed".
-If the post does not indicate any valence, choose "Neutral"
+If the post does not indicate any valence, choose "Unknown"
 
 
 
