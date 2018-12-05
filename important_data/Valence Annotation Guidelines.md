@@ -5,7 +5,7 @@ Lucia Chen
 
 ## Definitions 
 
-**PRIMARY TARGET OF OPINION (PTO)**: This is the entity towards which we can determine the speaker's attitude. The entity can be a person, situation or event. There could be more than one PTOs in one sentence or one post. 
+**PRIMARY TARGET OF OPINION (PTO)**: This is the entity towards which we can determine the speaker's attitude. The entity can be a person, situation or event. *There could be more than one PTOs in one sentence or one post.*
 
 **VALENCE** refers to the degree of positivity or negativity of the post as it relates to the primary target of opinion. 
 
@@ -21,7 +21,7 @@ If the post indicates both positive and negative valence, choose "Mixed".
 
 If the post does not indicate any valence, choose "Neutral".
 
-If you cannot understand the post because the languge is confusing or there's a large trunk of foreign language that you don't understand, choose 'Cannot understand the post'.
+If you cannot understand the post because the languge is confusing or there's a large trunk of foreign language that you don't understand, choose "Cannot understand the post".
 
 
 Valence is determined as follows: 
@@ -54,9 +54,12 @@ Valence is determined as follows:
 
 As you have seen, valence can be represented by any word form or phrase. This includes nouns, adjectives, verbs, adverbs, and even emoticons. 
 
-## What to do if you are not sure? 
+## What to do if you are not sure about the valence? 
 
 If there are any posts where you are not sure about the correct valence, go with the option that makes the most sense to you, copy and paste the post into a separate document, and describe the reasons why you found your decision difficult. This is particularly important for the first 60 posts you label. 
+
+## What if the post is not interpretable?
+Sometimes the posts might contain one or two foreign words, but that might not affect your interpretation of the post if there's enough context information. However, sometimes the posts contain a trunk of foreign language that affects your interpretation, choose *Cannot understand the post*.
 
 
 ## References:
@@ -69,6 +72,6 @@ Mohammad, S. (2016). A practical guide to sentiment annotation: Challenges and s
 
 1. I was not sure how to annotate this one as there are two things the post mentions – the film and Israel-Palestine conflict – but the primary target of the opinion is the film. 
 
-Answer: When there are two targets in the posts and the author's valenced emotion towards the targets are not consistent, please choose *Mixed*. Please don't decide the sentence valence based on one of the PTO while multiple PTOs are presented.
+Answer: When there are two targets in the posts and the author's valenced emotion towards the targets are not consistent, please choose *Mixed*. Please don't decide the sentence valence based on one of the PTOs when multiple PTOs are presented.
 
 
