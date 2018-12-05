@@ -5,7 +5,7 @@ Lucia Chen
 
 ## Definitions 
 
-**PRIMARY TARGET OF OPINION (PTO)**: This is the entity towards which we can determine the speaker's attitude. The entity can be a person, situation or event. 
+**PRIMARY TARGET OF OPINION (PTO)**: This is the entity towards which we can determine the speaker's attitude. The entity can be a person, situation or event. There could be more than one PTOs in one sentence or one post. 
 
 **VALENCE** refers to the degree of positivity or negativity of the post as it relates to the primary target of opinion. 
 
@@ -21,6 +21,8 @@ If the post indicates both positive and negative valence, choose "Mixed".
 
 If the post does not indicate any valence, choose "Neutral".
 
+If you cannot understand the post because the languge is confusing or there's a large trunk of foreign language that you don't understand, choose 'Cannot understand the post'.
+
 
 Valence is determined as follows: 
 
@@ -29,6 +31,7 @@ Valence is determined as follows:
   * Positive: I am *very proud* / I *love* going for a walk in the rain. / I had pasta today ;) 
   * Negative: I am *so sad*. / I *hate* waking up so early this morning. / I had pasta today :(
   * Mixed: I am *so proud* to start a new chapter in my life, but *really sad* to leave my hometown. 
+  * Mixed: I like the movie, but the conversation between Tom and Jack makes me feel a bit sad. 
   * Neutral: I had pasta today.
 
 * If the author does not express any positive or negative attitude using obvious valenced words (e.g. adjectives, emoji, verbs), but the primary target of opinion has strong associations with positive or negative valence. These words usually have valence as part of their meanings, for example, *die*, *nuisance*, *disgusting* (negative) or *cherish*, *blessing*, *wonderful* (positive).  In that case, use these associations to determine valence. Consider the valence that the primary target of opinion has for most people in Western culture. 
@@ -61,3 +64,11 @@ If there are any posts where you are not sure about the correct valence, go with
 Brendl, C. M., & Higgins, E. T. (1996). Principles of judging valence: What makes events positive or negative?. In Advances in experimental social psychology (Vol. 28, pp. 95-160). Academic Press.
 
 Mohammad, S. (2016). A practical guide to sentiment annotation: Challenges and solutions. In Proceedings of the 7th Workshop on Computational Approaches to Subjectivity, Sentiment and Social Media Analysis (pp. 174-179).
+
+## FAQ: (Don't hesitate to email me your questions so that I can update this section (: ) 
+
+1. I was not sure how to annotate this one as there are two things the post mentions – the film and Israel-Palestine conflict – but the primary target of the opinion is the film. 
+
+Answer: When there are two targets in the posts and the author's valenced emotion towards the targets are not consistent, please choose *Mixed*. Please don't decide the sentence valence based on one of the PTO while multiple PTOs are presented.
+
+
