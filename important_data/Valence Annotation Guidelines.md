@@ -68,10 +68,12 @@ Brendl, C. M., & Higgins, E. T. (1996). Principles of judging valence: What make
 
 Mohammad, S. (2016). A practical guide to sentiment annotation: Challenges and solutions. In Proceedings of the 7th Workshop on Computational Approaches to Subjectivity, Sentiment and Social Media Analysis (pp. 174-179).
 
-## FAQ: (Don't hesitate to email me your questions so that I can update this section (: ) 
+## FAQ: 
+
+If you have any questions or doubts about any of the posts, please email them to lushi.chen@ed.ac.uk and maria.wolters@ed.ac.uk. Make sure to include the full post. 
 
 1. I was not sure how to annotate this one as there are two things the post mentions – the film and Israel-Palestine conflict – but the primary target of the opinion is the film. 
 
-Answer: When there are two targets in the posts and the author's valenced emotion towards the targets are not consistent, please choose *Mixed*. Please don't decide the sentence valence based on one of the PTOs when multiple PTOs are presented.
+Answer: When there are two or more potential primary targets of opinion in a post, and the author expresses different attitudes towards both targets, please choose *Mixed*. 
 
 
