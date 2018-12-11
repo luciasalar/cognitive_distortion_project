@@ -149,12 +149,12 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 						
 * **Selective Abstraction** The process of exclusively focusing on one negative aspect or detail of a situation, magnifying the importance of that detail, thereby casting the whole situation in a negative context. 
 
-*The difference between disqualifying of positive and selective abstraction is that the former one denies a positive event or positive trait, whereas, selective abstraction focus on negative aspects of the event*
-
 	Example:
 	- I hate school.
 	
 	*We don't know what happen to this person in school, but usually there are ups and downs. Some people often assign positive meanings to daily life events, whereas, some people magnify the negativity of one event.*
+	
+	*Note: The difference between disqualifying of positive and selective abstraction is that the former one denies a positive event or positive trait, whereas, selective abstraction focus on negative aspects of the event*
 						
 * **“Should” Statements** A pattern of having internal expectations or demands on oneself, without whether it's reasonable to have these expectations or not.
 
