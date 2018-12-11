@@ -27,8 +27,10 @@ Make sure you read all the instructions. Pay attention to the sentence highlight
 
 * Jumping to Conclusions. Draw negative conclusion without evidence to support that conclusion.
 
+    ```
 	Example: 
 	She’s not answering my phone, she must be cheating on me.
+	```
 					
 * Catastrophizing. One believes the worst situation will occur.
 
