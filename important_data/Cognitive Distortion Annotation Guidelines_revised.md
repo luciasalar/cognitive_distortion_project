@@ -27,11 +27,13 @@ Make sure you read all the instructions. Pay attention to the sentence highlight
 
 * Jumping to Conclusions. Draw negative conclusion without evidence to support that conclusion.
 
-	Example: She’s not answering my phone, she must be cheating on me.
+	Example: 
+	She’s not answering my phone, she must be cheating on me.
 					
 * Catastrophizing. One believes the worst situation will occur.
 
- 	Example: I better not try because I might fail, and that would be awful.
+ 	Example: 
+ 	I better not try because I might fail, and that would be awful.
 
 *Difference between Jumping to Conclusions and Catastrophizing: 
 Catastrophizing thought often involves Jumping to Conclusions, catastrophizing magnify the importance of minor mistakes.*
@@ -39,7 +41,8 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 	
 *  Comparison. One beliefs that he/she is worse than others because one tend to compare himself/herself with others
 
-	Example: I wish I were as comfortable with women as my brother is.
+	Example: 
+	I wish I were as comfortable with women as my brother is.
 
 *  Dichotomous/Black-and-White Thinking. The tendency to view all experiences as fitting into one of two categories (e.g., positive or negative; good or bad).
 
