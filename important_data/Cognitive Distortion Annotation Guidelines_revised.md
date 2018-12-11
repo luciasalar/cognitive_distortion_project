@@ -34,8 +34,10 @@ Make sure you read all the instructions. Pay attention to the sentence highlight
 					
 * Catastrophizing. One believes the worst situation will occur.
 
- 	Example: 
+    ```
+    Example: 
  	I better not try because I might fail, and that would be awful.
+ 	```
 
 *Difference between Jumping to Conclusions and Catastrophizing: 
 Catastrophizing thought often involves Jumping to Conclusions, catastrophizing magnify the importance of minor mistakes.*
@@ -43,14 +45,18 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 	
 *  Comparison. One beliefs that he/she is worse than others because one tend to compare himself/herself with others
 
+    ```
 	Example: 
 	I wish I were as comfortable with women as my brother is.
+	```
 
 *  Dichotomous/Black-and-White Thinking. The tendency to view all experiences as fitting into one of two categories (e.g., positive or negative; good or bad).
 
+	```
 	Example 1: you might frequently flip-flop between seeing yourself as a remarkable success or a major failure based on the praise or criticism of others. 
 
-	Example 2: A person with dichotomous thinking may meet a new coworker at work. In the beginning, the coworker is viewed as amazing, perfect, and better than any other coworker or friend ever encountered before. People with dichotomous thinking tend to have favorites and to believe that everything about a favorite person or thing is superior to others. However, as time goes on, someone with dichotomous thinking may suddenly swing to the opposite extreme. If ignored by the coworker, or if the co-worker behaves in a disappointing way, a person with dichotomous thinking may lose respect for or hate this formerly favorite coworker, unable to sustain relationships that are not distinctly "love" or "hate". 				
+	Example 2: A person with dichotomous thinking may meet a new coworker at work. In the beginning, the coworker is viewed as amazing, perfect, and better than any other coworker or friend ever encountered before. People with dichotomous thinking tend to have favorites and to believe that everything about a favorite person or thing is superior to others. However, as time goes on, someone with dichotomous thinking may suddenly swing to the opposite extreme. If ignored by the coworker, or if the co-worker behaves in a disappointing way, a person with dichotomous thinking may lose respect for or hate this formerly favorite coworker, unable to sustain relationships that are not distinctly "love" or "hate". 		
+	```		
 					
 *  Disqualifying the Positive. Denying a situation/trait/event is positive.
 	Example: The imposter syndrome 
