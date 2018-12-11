@@ -25,18 +25,18 @@ Make sure you read all the instructions. Pay attention to the sentence highlight
 ## Checklist of Cognitive Distortions:
 					
 
-* Jumping to Conclusions. Draw negative conclusion without evidence to support that conclusion.
+* **Jumping to Conclusions**. Draw negative conclusion without evidence to support that conclusion.
 
    
 	Example: 
-	She’s not answering my phone, she must be cheating on me.
+	- She’s not answering my phone, she must be cheating on me.
 	
 					
 * Catastrophizing. One believes the worst situation will occur.
 
     
     Example: 
- 	I better not try because I might fail, and that would be awful.
+ 	- I better not try because I might fail, and that would be awful.
  	
 
 *Difference between Jumping to Conclusions and Catastrophizing: 
@@ -47,7 +47,7 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 
    
 	Example: 
-	I wish I were as comfortable with women as my brother is.
+	- I wish I were as comfortable with women as my brother is.
 	
 
 *  Dichotomous/Black-and-White Thinking. The tendency to view all experiences as fitting into one of two categories (e.g., positive or negative; good or bad).
@@ -60,87 +60,91 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 		
 					
 *  Disqualifying the Positive. Denying a situation/trait/event is positive.
-	Example: The imposter syndrome 
+	
+	Example: 
+	- The imposter syndrome 
 
-	Example: A friend compliments you on a dinner you made, but you decide that “they are just saying that to be nice” or “they are trying to get something out of me”.
+	- A friend compliments you on a dinner you made, but you decide that “they are just saying that to be nice” or “they are trying to get something out of me”.
 						
 *  Emotional Reasoning. Letting your emotions to direct your conclusions about yourself, others, or situations. 
 
 
-	Example 1:
-	You can’t help feeling fat, though your doctor and those around you tell you that your weight lies comfortably within the normal range. You actually know this, and still…
+	Example:
+	- You can’t help feeling fat, though your doctor and those around you tell you that your weight lies comfortably within the normal range. You actually know this, and still…
 
-	Example 2:
-	You feel guilty about something, so you conclude you must be guilty—even though there’s absolutely no evidence that you’ve done anything wrong and others have assured you of this.
+	- You feel guilty about something, so you conclude you must be guilty—even though there’s absolutely no evidence that you’ve done anything wrong and others have assured you of this.
 
-	Example 3:
-	In your relationship, you struggle mightily with feelings of jealousy. You can’t resist accusing your partner of infidelity, even though they’ve shown nothing but devotion to you and you have no plausible evidence that you've been betrayed.
+	- In your relationship, you struggle mightily with feelings of jealousy. You can’t resist accusing your partner of infidelity, even though they’ve shown nothing but devotion to you and you have no plausible evidence that you've been betrayed.
 
-	Example 4:
-	You feel stupid, so you’re convinced you must be dumb, regardless of the fact that your grades in school were as good as (or better than!) others and, as an adult, you’ve achieved at least as much as those around you.
+	- You feel stupid, so you’re convinced you must be dumb, regardless of the fact that your grades in school were as good as (or better than!) others and, as an adult, you’ve achieved at least as much as those around you.
 
-	Example 5:
-	You feel enraged with someone, so you take for granted that they must have done something bad, though you really can’t put your finger on anything specific and nothing about their behavior seems to provoke anyone else.
+	- You feel enraged with someone, so you take for granted that they must have done something bad, though you really can’t put your finger on anything specific and nothing about their behavior seems to provoke anyone else.
 
-	Example 6:
-	You feel lonely so you’re compelled to deduce that no one cares about you, that your feeling unequivocally confirms your unlovability.
+	- You feel lonely so you’re compelled to deduce that no one cares about you, that your feeling unequivocally confirms your unlovability.
 
 					
 * Externalization of Self-Worth. Develop one's self-worth only based on how the external world views one.
 
-	Example: My worth is dependent on what others think of me.
+	Example: 
+	- My worth is dependent on what others think of me.
 
-	Example: If I don’t do that, people won’t like me anymore.
+	- If I don’t do that, people won’t like me anymore.
 						
 * Fortunetelling.  Assume that some event or events will end badly for us, that we will fail at something or we will be in danger, more as an assumption rather than an educated guess. *Sometimes it's difficult for us to judge whether the statement is supported by evidence or not based on Facebook text only. In this case, if the author did not provide evidence in the text, we flag the post as cognitive distortion*
 
-	Example: I’ll never, ever feel better.
+	Example: 
+	- I’ll never, ever feel better.
 
-	Example: I’m not going to get the job.
+	- I’m not going to get the job.
 
 						
 * Labeling. Labeling oneself or others using derogatory names.
 
-	Example 1: I’m a loser.
-	Example 2: I failed a test, I am a failure.	
-	Example 3: she is frequently late to work, she is irresponsible. 
+	Example: 
+	- I’m a loser.
+	- I failed a test, I am a failure.	
+	- she is frequently late to work, she is irresponsible. 
 				
 * Magnification. Exaggerate the importance of your errors, fears, and imperfections. 
 
-	Example: Yon send out the wrong letter to a client at work, and this turns into “I will now lose my job, and then I won’t be able to pay my bills, and then I will lose my house.” 
+	Example: 
+	- Yon send out the wrong letter to a client at work, and this turns into “I will now lose my job, and then I won’t be able to pay my bills, and then I will lose my house.” 
 
 *Note: Catastrophizing is a subtype of Magnification.*
 							
 * Mind Reading. Concluding that other people are reacting negatively, or thinking negatively toward him/her, without evidence to support the conclusion. 
 
-	Example: I just know that he/she will disapprove.
+	Example: 
+	- I just know that he/she will disapprove.
 
 *Sometimes it's difficult for us to judge whether the statement is true to the reality based on Facebook text only. In this case, if the author did not provide evidence in the text, we flag the post as cognitive distortion*
 						
 * Minimization. Minimizing or discounting the importance of some event, trait, or circumstance. Note: Similar to Disqualifying the Positive, minimization emphasis discounting the IMPORTANCE of something, not whether it is positive
 	
-	Example 1: People tell you that you have done a good job but you are still anxious that it's not good enough
-	Example 2: What I say doesn’t matter anyway, my opinion is not important to the group.
+	Example: 
+	- People tell you that you have done a good job but you are still anxious that it's not good enough
+	- What I say doesn’t matter anyway, my opinion is not important to the group.
 						
 * Overgeneralization. When someone over generalizes, they see that one negative event in their life as a never ending pattern. People with overgeneralization thinking patterns tend to use “always”, “every” and “never” very often.
 
-	Example 1:
-	Why does this always happen to me?	
-	Example 2:
-	It doesn’t matter what my choices are, they always fall flat.
-	Example 3:
-	Nothing good ever happens to me.
-	Example 4:
-	Everything is always terrible.
+	Example :
+	- Why does this always happen to me?	
+
+	- It doesn’t matter what my choices are, they always fall flat.
+
+	- Nothing good ever happens to me.
+	
+	- Everything is always terrible.
 
 * Perfectionism. Constantly striving to live up to some internal or external standards of perfection without evalutating whether the goal is realistic or not.
 
-	Example: Doing a merely adequate job is just a failure.
+	Example: 
+	- Doing a merely adequate job is just a failure.
 						
 * Personalization. Assume you are responsible for an external event over which you have no control. When you personalize, you feel guilty because you confuse influence with control over others. 
 
 	Example: 
-	My daughter failed her exam. I should have done more to help her.
+	- My daughter failed her exam. I should have done more to help her.
 
 						
 * Selective Abstraction. The process of exclusively focusing on one negative aspect or detail of a situation, magnifying the importance of that detail, thereby casting the whole situation in a negative context. 
@@ -148,14 +152,14 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 *The difference between disqualifying of positive and selective abstraction is that the former one denies a positive event or positive trait, whereas, selective abstraction focus on negative aspects of the event*
 
 	Example:
-	I hate school.
+	- I hate school.
 	
 	*We don't know what happen to this person in school, but usually there are ups and downs. Some people often assign positive meanings to daily life events, whereas, some people magnify the negativity of one event.*
 						
 * “Should” Statements. A pattern of having internal expectations or demands on oneself, without whether it's reasonable to have these expectations or not.
 
 	Example: 
-	I shouldn’t have made so many mistakes.
+	- I shouldn’t have made so many mistakes.
 
 
 
