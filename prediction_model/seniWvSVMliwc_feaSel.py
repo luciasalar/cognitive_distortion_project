@@ -18,13 +18,11 @@ from sklearn.svm import LinearSVC
 from sklearn import svm
 from sklearn.model_selection import GridSearchCV
 from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.preprocessing import StandardScaler, Normalizer
 
 #direct to ~/cognitive_distortion/prediction_model then run the script
-#This is a grid search SVC model with tfidf sentiVec and LIWC as features
-# Importing the dataset
-data = pd.read_csv('../data/self_label_distortion2.csv')
-data.columns
-print('loaded data')
+#This is a grid search SVC model with tfidf sentiVec and LIWC as features, feature selection 
+
 
 class MyFea:
     def __init__(self, text):
@@ -59,12 +57,19 @@ def getLabel(obj):
 
 
 if __name__ == '__main__':
+    if len(argv) != 3:
+        print("Usage: " + argv[0] + 'language model')
+        exit(1)
+
 
     #load the word vector data
     print('is reading data...')
-    infile = open('../sentiVectors2','rb')
+    #'./wordEmbeddings/wikiVectors'
+    wordEmbeddingModel = argv[1]
+    infile = open(wordEmbeddingModel,'rb')
     results = pickle.load(infile)
 
+    infile = open('./wordEmbeddings/wikiVectors','rb')
 
     print('is creating feature matrix...')
     proto_matrix = append_features(results)
@@ -86,11 +91,12 @@ if __name__ == '__main__':
     ####combine with liwc
     X = np.concatenate((X_vec, liwc), axis=1)
 
-    print('computing svm (sentvec+tiidf+liwc) model...')
-    #####grid search (the parameters predict everything to one class, we should use a separated 
-
-    cv = StratifiedKFold(n_splits=5)
-    svc = make_pipeline(svm.SVC())
+    #Normalize data, convert it to unit vectors
+    print('computing svm (wv+tiidf+liwc) model...')
+    #{'svc__C': 1.5, 'svc__class_weight': 'balanced', 'svc__gamma': 0.0001, 'svc__kernel': 'sigmoid'}
+    cv = StratifiedKFold(n_splits=5, random_state=0)
+    #svc = make_pipeline(Normalizer(),svm.SVC()) #the normalizer model has poor results
+    svc = make_pipeline(StandardScaler(),SelectFromModel(LinearSVC(C=1.5, penalty="l2", dual=False)),svm.SVC())
     parameters = [{'svc__kernel': ['linear', 'poly', 'rbf', 'sigmoid'], 'svc__gamma': [0.01, 0.001, 0.0001],
                          'svc__C':[0.1, 0.3, 0.5, 0.7, 0.9, 1.0, 1.5, 2.0,] , 'svc__class_weight':['balanced']}]
                        
@@ -110,7 +116,8 @@ if __name__ == '__main__':
     params = grid_search.cv_results_['params']
 
 
-    print('Done!')
+    print(' svm (wv+tfidf+liwc+feature selection) model Done!')
+
 
 
 

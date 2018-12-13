@@ -1,0 +1,33 @@
+loaded data
+is reading data...
+is creating feature matrix...
+computing svm model...
+Exception KeyboardInterrupt:  in <Finalize object, dead> ignored
+Exception KeyboardInterrupt:  in <bound method SemLock.__del__ of <sklearn.externals.joblib.externals.loky.backend.semlock.SemLock object at 0x7fd76c1dce50>> ignored
+Exception KeyboardInterrupt: KeyboardInterrupt() in <Finalize object, dead> ignored
+Traceback (most recent call last):
+  File "sentiWvSVM.py", line 86, in <module>
+    grid_search = grid_search_item.fit(X, y)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/model_selection/_search.py", line 722, in fit
+    self._run_search(evaluate_candidates)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/model_selection/_search.py", line 1191, in _run_search
+    evaluate_candidates(ParameterGrid(self.param_grid))
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/model_selection/_search.py", line 711, in evaluate_candidates
+    cv.split(X, y, groups)))
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/parallel.py", line 930, in __call__
+    self.retrieve()
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/parallel.py", line 833, in retrieve
+    self._output.extend(job.get(timeout=self.timeout))
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/_parallel_backends.py", line 521, in wrap_future_result
+    return future.result(timeout=timeout)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/externals/loky/_base.py", line 428, in result
+    self._condition.wait(timeout)
+  File "/usr/lib64/python2.7/threading.py", line 339, in wait
+    waiter.acquire()
+KeyboardInterrupt
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/externals/loky/backend/semaphore_tracker.py:198: UserWarning: semaphore_tracker: There appear to be 2 leaked semaphores to clean up at shutdown
+  len(cache))
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/externals/loky/backend/semaphore_tracker.py:213: UserWarning: semaphore_tracker: u'/loky-90053-edEjsg': OSError(2, 'ENOENT')
+  warnings.warn('semaphore_tracker: %r: %r' % (name, e))
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/externals/loky/backend/semaphore_tracker.py:213: UserWarning: semaphore_tracker: u'/loky-90053-vR37y_': OSError(2, 'ENOENT')
+  warnings.warn('semaphore_tracker: %r: %r' % (name, e))

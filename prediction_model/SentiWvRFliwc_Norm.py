@@ -18,9 +18,10 @@ from sklearn.svm import LinearSVC
 from sklearn import svm
 from sklearn.model_selection import GridSearchCV
 from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.preprocessing import StandardScaler, Normalizer
 
 #direct to ~/cognitive_distortion/prediction_model then run the script
-#This is a grid search SVC model with tfidf sentiVec and LIWC as features
+#This is a grid search RF model with tfidf sentiVec and LIWC as features, feature selection 
 # Importing the dataset
 data = pd.read_csv('../data/self_label_distortion2.csv')
 data.columns
@@ -59,7 +60,6 @@ def getLabel(obj):
 
 
 if __name__ == '__main__':
-
     #load the word vector data
     print('is reading data...')
     infile = open('../sentiVectors2','rb')
@@ -86,31 +86,29 @@ if __name__ == '__main__':
     ####combine with liwc
     X = np.concatenate((X_vec, liwc), axis=1)
 
-    print('computing svm (sentvec+tiidf+liwc) model...')
-    #####grid search (the parameters predict everything to one class, we should use a separated 
+    #Normalize data, convert it to unit vectors
+    cv = StratifiedKFold(n_splits=5, random_state = 0)
+    print('computing RF (sentvec+tiidf+liwc) model...')
+    rf = make_pipeline(StandardScaler(),RandomForestClassifier())
 
-    cv = StratifiedKFold(n_splits=5)
-    svc = make_pipeline(svm.SVC())
-    parameters = [{'svc__kernel': ['linear', 'poly', 'rbf', 'sigmoid'], 'svc__gamma': [0.01, 0.001, 0.0001],
-                         'svc__C':[0.1, 0.3, 0.5, 0.7, 0.9, 1.0, 1.5, 2.0,] , 'svc__class_weight':['balanced']}]
+    parameters = [{'randomforestclassifier__max_features':['auto','sqrt','log2'], 'randomforestclassifier__class_weight':['balanced'], 
+                   'randomforestclassifier__max_leaf_nodes':[10,50,100], 'randomforestclassifier__max_depth':[2,5,10,20], 'randomforestclassifier__n_estimators' : [50,100,200,300,400]}]
                        
-    grid_search_item = GridSearchCV(estimator = svc,
+    grid_search_item = GridSearchCV(rf,
                               param_grid = parameters,
-                               cv =  cv,
+                               cv = cv,
                                scoring = 'accuracy',
                                n_jobs = -1)
     grid_search = grid_search_item.fit(X, y)
 
-    print('Best scores and best parameters')
     print(grid_search.best_score_)
     print(grid_search.best_params_)
 
     means = grid_search.cv_results_['mean_test_score']
     stds = grid_search.cv_results_['std_test_score']
     params = grid_search.cv_results_['params']
+    for mean, stdev, param in zip(means, stds, params):
+        print("%f (%f) with: %r" % (mean, stdev, param))
 
-
-    print('Done!')
-
-
+    print('RF(sentvec+tfidf+liwc+feature selection) model Done!')
 
