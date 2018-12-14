@@ -19,7 +19,6 @@ from sklearn import svm
 from sklearn.model_selection import GridSearchCV
 from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import train_test_split
-
 from sys import argv
 
 # Importing the dataset
@@ -70,10 +69,9 @@ if __name__ == '__main__':
 
 	#load the word vector data
 	print('is reading data...')
-	infile = open('../wordEmbeddings/wikiVectors','rb')
+	infile = open('../wordEmbeddings/sentiVectors2','rb')
 	#infile = open(argv[2],'rb')
 	results = pickle.load(infile)
-	#'../wordEmbeddings/sentiVectors2'
 
 
 	print('is creating feature matrix...')
@@ -121,9 +119,8 @@ if __name__ == '__main__':
 	stds = grid_search.cv_results_['std_test_score']
 	params = grid_search.cv_results_['params']
 
-	y_true, y_pred = y_test, svc.predict(X_test)
+	y_true, y_pred = y_test, grid_search.predict(X_test)
 	print(classification_report(y_true, y_pred))
-
-
+  
 
 	print('Done!')

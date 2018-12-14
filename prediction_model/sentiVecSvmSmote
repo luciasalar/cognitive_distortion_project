@@ -1,0 +1,13 @@
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/parallel.py:268: DeprecationWarning: check_pickle is deprecated in joblib 0.12 and will be removed in 0.13
+  ' removed in 0.13', DeprecationWarning)
+loaded data
+is reading data...
+is creating feature matrix...
+computing svm model...
+compute SVC with optimized parameters...
+Before OverSampling, counts of label '1': 217
+Before OverSampling, counts of label '0': 435 
+
+After OverSampling, the shape of train_X: (870, 24601)
+After OverSampling, the shape of train_y: (870,) 
+

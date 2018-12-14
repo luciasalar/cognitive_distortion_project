@@ -1,0 +1,6 @@
+loaded data
+is reading data...
+Traceback (most recent call last):
+  File "WvRFliwc_Norm.py", line 71, in <module>
+    infile = open(wordEmbeddingModel,'rb')
+IOError: [Errno 2] No such file or directory: './myModel'

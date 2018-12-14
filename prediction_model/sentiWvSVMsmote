@@ -1,0 +1,32 @@
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/externals/joblib/parallel.py:268: DeprecationWarning: check_pickle is deprecated in joblib 0.12 and will be removed in 0.13
+  ' removed in 0.13', DeprecationWarning)
+loaded data
+is reading data...
+is creating feature matrix...
+computing svm model...
+compute SVC with optimized parameters...
+Before OverSampling, counts of label '1': 217
+Before OverSampling, counts of label '0': 435 
+
+After OverSampling, the shape of train_X: (870, 24601)
+After OverSampling, the shape of train_y: (870,) 
+
+Best scores and best parameters
+0.8551724137931035
+{'svc__gamma': 0.01, 'svc__class_weight': 'balanced', 'svc__kernel': 'rbf', 'svc__C': 1.5}
+Traceback (most recent call last):
+  File "WvSVM.py", line 122, in <module>
+    y_true, y_pred = y_test, svc.predict(X_test)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/utils/metaestimators.py", line 118, in <lambda>
+    out = lambda *args, **kwargs: self.fn(obj, *args, **kwargs)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/pipeline.py", line 332, in predict
+    return self.steps[-1][-1].predict(Xt, **predict_params)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py", line 567, in predict
+    y = super(BaseSVC, self).predict(X)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py", line 325, in predict
+    X = self._validate_for_predict(X)
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py", line 455, in _validate_for_predict
+    check_is_fitted(self, 'support_')
+  File "/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/utils/validation.py", line 951, in check_is_fitted
+    raise NotFittedError(msg % {'name': type(estimator).__name__})
+sklearn.exceptions.NotFittedError: This SVC instance is not fitted yet. Call 'fit' with appropriate arguments before using this method.

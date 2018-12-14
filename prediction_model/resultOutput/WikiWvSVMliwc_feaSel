@@ -1,0 +1,43 @@
+is reading data...
+is creating feature matrix...
+tifidf word vectors
+load LIWC data...
+computing svm (wv+tiidf+liwc) model...
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/disk/data/share/s1690903/cognitive_distortion/cogenvKera/lib/python2.7/site-packages/sklearn/model_selection/_search.py:841: DeprecationWarning: The default of the `iid` parameter will change from True to False in version 0.22 and will be removed in 0.24. This will change numeric results when test-set sizes are unequal.
+  DeprecationWarning)
+Best scores and best parameters
+0.6652360515021459
+{'svc__gamma': 0.01, 'svc__class_weight': 'balanced', 'svc__kernel': 'poly', 'svc__C': 0.1}
+ svm (wv+tfidf+liwc+feature selection) model Done!
