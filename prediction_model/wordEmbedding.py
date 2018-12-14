@@ -50,6 +50,7 @@ def convert_vec(objects):
     for item in objects:
         while len(objects[item].vectors) < maxlen:
             objects[item].vectors.append(zero_vector)
+
         
 
 if __name__ == '__main__':
@@ -57,33 +58,36 @@ if __name__ == '__main__':
 		print("Usage: " + argv[0] + 'language model')
 		exit(1)
     
-	objects = {}
-	with open('../data/self_label_distortion2.csv', 'r') as csvfile:
-	    reader = csv.DictReader(csvfile)
-	    for row in reader:
-	        #print(row['text'])
-	        texthash = hash(row['text'])
-	        if texthash not in objects:
-	            objects[texthash] = MyFea(row['text'])
-	        objects[texthash].label.append(row['negative_yn_self'])
+    objects = {}
+    with open('../data/self_label_distortion2.csv', 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            #print(row['text'])
+            texthash = hash(row['text'])
+            if texthash not in objects:
+                objects[texthash] = MyFea(row['text'])
+            objects[texthash].label.append(row['negative_yn_self'])
 
 
-	print('start to load language model..')
-	#sentivec 
-	#en_model = KeyedVectors.load_word2vec_format('/afs/inf.ed.ac.uk/user/s16/s1690903/share/fasttext/wiki.en.vec')
-	#type language model
-	embeddingModel = argv[1]
-	en_model = KeyedVectors.load_word2vec_format(embeddingModel)
-	print('Finish loading model')
+    print('start to load language model..')
+    #sentivec 
+    #en_model = KeyedVectors.load_word2vec_format('/afs/inf.ed.ac.uk/user/s16/s1690903/share/fasttext/wiki.en.vec')
+    #type language model
+    embeddingModel = argv[1]
+    en_model = KeyedVectors.load_word2vec_format(embeddingModel)
+    print('Finish loading model')
 
-	convert_vec(objects)
-	print('converted text to vectors')
+    convert_vec(objects)
+    print('converted text to vectors')
 
 
-	#dump object to pickles
-	OutputFilename = (argv[2])
-	#OutputFilename = 'wikiVectors'
-	outfile = open(OutputFilename,'wb')
-	pickle.dump(objects,outfile)
-	outfile.close()
+    #dump object to pickles
+    OutputFilename = (argv[2])
+    #OutputFilename = 'wikiVectors'
+    outfile = open(OutputFilename,'wb')
+    pickle.dump(objects,outfile)
+    outfile.close()
+
+
+
 

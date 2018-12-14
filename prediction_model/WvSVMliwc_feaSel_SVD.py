@@ -19,6 +19,8 @@ from sklearn import svm
 from sklearn.model_selection import GridSearchCV
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.preprocessing import StandardScaler, Normalizer
+from sys import argv
+from sklearn.decomposition import TruncatedSVD
 
 #direct to ~/cognitive_distortion/prediction_model then run the script
 #This is a grid search SVC model with tfidf sentiVec and LIWC as features, feature selection 
@@ -57,7 +59,7 @@ def getLabel(obj):
 
 
 if __name__ == '__main__':
-    if len(argv) != 3:
+    if len(argv) != 2:
         print("Usage: " + argv[0] + 'language model')
         exit(1)
 
@@ -69,7 +71,7 @@ if __name__ == '__main__':
     infile = open(wordEmbeddingModel,'rb')
     results = pickle.load(infile)
 
-    infile = open('./wordEmbeddings/wikiVectors','rb')
+    #infile = open('../wordEmbeddings/wikiVectors','rb')
 
     print('is creating feature matrix...')
     proto_matrix = append_features(results)
@@ -82,6 +84,11 @@ if __name__ == '__main__':
     print('tifidf word vectors')
     tfidf_transformer = TfidfTransformer()
     X_vec = tfidf_transformer.fit_transform(fea).toarray()
+
+    #reduce dimension
+    reducer = TruncatedSVD(n_components=5, n_iter=7, random_state=42)
+    reducer.fit(X_vec)
+    X_vec = reducer.transform(X_vec)
 
 
     print('load LIWC data...')
