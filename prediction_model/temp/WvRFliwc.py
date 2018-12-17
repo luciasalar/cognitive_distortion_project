@@ -11,88 +11,82 @@ from sklearn.metrics import confusion_matrix, f1_score, precision_score,\
 recall_score, confusion_matrix, classification_report, accuracy_score 
 from sklearn.model_selection import GridSearchCV, cross_val_score, StratifiedKFold
 from sklearn.linear_model import SGDClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.pipeline import make_pipeline
 from sklearn.feature_selection import SelectFromModel
 from sklearn.svm import LinearSVC
 from sklearn import svm
 from sklearn.model_selection import GridSearchCV
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.preprocessing import StandardScaler, Normalizer
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
 from sys import argv
+import gc
+from sklearn.decomposition import TruncatedSVD
+from sklearn.pipeline import Pipeline
+from imblearn.pipeline import make_pipeline, Pipeline
+from imblearn.combine import SMOTEENN
+from sklearn.preprocessing import StandardScaler, Normalizer
+
+
+infile = open('/afs/inf.ed.ac.uk/user/s16/s1690903/share/cognitive_distortion/wordEmbeddings/wikiVectorsBoWTfidfSparse','rb')
+#infile = open('/afs/inf.ed.ac.uk/user/s16/s1690903/share/cognitive_distortion/wordEmbeddings/wikiVectorsBoW2','rb')
+#infile = open(argv[2],'rb')
+results = pickle.load(infile)
+infile.close()
+
+
+objects = {}
+with open('../data/self_label_distortion2.csv', 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        #print(row['text'])
+        texthash = hash(row['text'])
+        if texthash not in objects:
+            objects[texthash] = MyFea(row['text'])
+        objects[texthash].label.append(row['negative_yn_self'])
+
+print('get y labels')
+y = getLabel(objects)
+y = np.array(y)
+
+
 
 #direct to ~/cognitive_distortion/prediction_model then run the script
 #This is a grid search RF model with tfidf sentiVec and LIWC as features, feature selection 
-# Importing the dataset
-data = pd.read_csv('../data/self_label_distortion2.csv')
-data.columns
-print('loaded data')
 
-class MyFea:
-    def __init__(self, text):
-        self.text = text
-        self.userid = hash(self.text)
-        self.label = []
-        self.vectors = []
-        self.meanVec = []
-        
-    def __hash__(self):
-        return self.quoteID
-    
+##just word embeddings
+print('computing RF (sentvec+tiidf+liwc) model...')
+rf = make_pipeline(StandardScaler(), RandomForestClassifier())
 
+parameters = [{'randomforestclassifier__max_features':['auto','sqrt','log2'], 'randomforestclassifier__class_weight':['balanced'], 
+           'randomforestclassifier__max_leaf_nodes':[10,50,100], 'randomforestclassifier__max_depth':[2,5,10,20], 'randomforestclassifier__n_estimators' : [50,100,200,300,400]}]
+               
+grid_search_item = GridSearchCV(rf,
+                      param_grid = parameters,
+                       cv = cv,
+                       scoring = 'accuracy',
+                       n_jobs = -1)
+grid_search = grid_search_item.fit(X_train, y_train)
 
-#append objects as festure matrix
-def append_features(ob):
-    count = 0
-    proto_matrix = []
-    for item in ob:
-        col2 = np.append(ob[item].vectors, ob[item].meanVec)
-        #print(col2)
-        proto_matrix.append(col2)
-        count += 1                 
-    return proto_matrix
+print(grid_search.best_score_)
+print(grid_search.best_params_)
 
+y_true, y_pred = y_test, grid_search.predict(X_test)
+print(classification_report(y_true, y_pred))
+  
+0.6993865030674846
+{'randomforestclassifier__class_weight': 'balanced', 'randomforestclassifier__max_depth': 10, 'randomforestclassifier__max_features': 'auto', 'randomforestclassifier__max_leaf_nodes': 50, 'randomforestclassifier__n_estimators': 300}
+              precision    recall  f1-score   support
 
-def getLabel(obj):
-    labels = []
-    for item in obj:
-        labels.append(int(obj[item].label[0]))
-    return labels
+           1       0.58      0.21      0.31        99
+           2       0.68      0.92      0.78       181
+
+   micro avg       0.67      0.67      0.67       280
+   macro avg       0.63      0.56      0.55       280
+weighted avg       0.65      0.67      0.61       280
 
 
-if __name__ == '__main__':
-    if len(argv) != 2:
-        print("Usage: " + argv[0] + 'language model')
-        exit(1)
-
-    #load the word vector data
-    print('is reading data...')
-    wordEmbeddingModel = argv[1]
-    infile = open(wordEmbeddingModel,'rb')
-    results = pickle.load(infile)
 
 
-    print('is creating feature matrix...')
-    proto_matrix = append_features(results)
-    fea = np.matrix(proto_matrix)
-    fea = np.nan_to_num(fea)
 
-    y = getLabel(results)
-    y = np.array(y)
-
-    print('tifidf word vectors')
-    tfidf_transformer = TfidfTransformer()
-    X_vec = tfidf_transformer.fit_transform(fea).toarray()
-
-    print('compute SVC with optimized parameters...')
-    X_train, X_test, y_train, y_test = train_test_split(X_vec, y, test_size=0.30, random_state=30)
-    print("Before OverSampling, counts of label '1': {}".format(sum(y_train==1)))
-    print("Before OverSampling, counts of label '0': {} \n".format(sum(y_train==2)))
-
-    sm = SMOTE(random_state=2)
-    X_train_res, y_train_res = sm.fit_sample(X_train, y_train.ravel())
-    print('After OverSampling, the shape of train_X: {}'.format(X_train_res.shape))
-    print('After OverSampling, the shape of train_y: {} \n'.format(y_train_res.shape))
 
 
     print('load LIWC data...')

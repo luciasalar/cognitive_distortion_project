@@ -25,13 +25,25 @@ from imblearn.combine import SMOTEENN
 
 #we can skip the previous step and load the SVD feature matrix directly 
 infile = open('/afs/inf.ed.ac.uk/user/s16/s1690903/share/cognitive_distortion/wordEmbeddings/WikiVecTfidfSVDFea','rb')
-results = pickle.load(infile)
+x_vec = pickle.load(infile)
 infile.close()
 
+#get prediction labels
+objects = {}
+with open('../data/self_label_distortion2.csv', 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        #print(row['text'])
+        texthash = hash(row['text'])
+        if texthash not in objects:
+            objects[texthash] = MyFea(row['text'])
+        objects[texthash].label.append(row['negative_yn_self'])
 
+print('get y labels')
+y = getLabel(objects)
+y = np.array(y)
 
-X_vec = svd_matrix
-X_train, X_test, y_train, y_test = train_test_split(X_vec, y, test_size=0.30, random_state=30)
+X_train, X_test, y_train, y_test = train_test_split(x_vec, y, test_size=0.30, random_state=30)
 ###grid search
 smote_enn = SMOTEENN(random_state=42)
 cv = StratifiedKFold(n_splits=5, random_state = 0)

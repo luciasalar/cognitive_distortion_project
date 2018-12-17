@@ -161,7 +161,7 @@ with open('../data/self_label_distortion2.csv', 'r') as csvfile:
 
 print('start to load language model..')
 #sentivec 
-#en_model = KeyedVectors.load_word2vec_format('/afs/inf.ed.ac.uk/user/s16/s1690903/share/fasttext/wiki.en.vec')
+#en_model = KeyedVectors.load_word2vec_format('/afs/inf.ed.ac.uk/user/s16/s1690903/share/fasttext/wikipedia.300d.txt')
 #type language model
 embeddingModel = argv[1]
 en_model = KeyedVectors.load_word2vec_format(embeddingModel)
@@ -178,7 +178,7 @@ print('converted text to vectors')
 #dump object to pickles
 OutputFilename = (argv[2])
 #OutputFilename = 'wikiVectors'
-outfile = open('../wordEmbeddings/wikiVectorsBoW','wb')
+outfile = open('./wordEmbeddings/sentiVectorsBoW','wb')
 pickle.dump(objects,outfile)
 outfile.close()
 
@@ -191,7 +191,7 @@ convert_vecTfidf(objects, word_idx, dim_x, dim_y, en_model)
 print('converted text to tfidf vectors')
 OutputFilename = (argv[2])
 #OutputFilename = 'wikiVectors'
-outfile = open('./wordEmbeddings/wikiVectorsBoWTfidf','wb')
+outfile = open('./wordEmbeddings/sentiVectorsBoWTfidf','wb')
 pickle.dump(objects,outfile)
 outfile.close()
 

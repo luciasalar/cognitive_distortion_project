@@ -62,6 +62,11 @@ if __name__ == '__main__':
     #   print("Usage: " + argv[0] + ' distortion_data sentence_vectors')
     #   exit(1)
     #load the word vector data
+
+
+
+
+
 print('is reading data...')
 infile = open('/afs/inf.ed.ac.uk/user/s16/s1690903/share/cognitive_distortion/wordEmbeddings/wikiVectorsBoWTfidfSparse','rb')
 #infile = open('/afs/inf.ed.ac.uk/user/s16/s1690903/share/cognitive_distortion/wordEmbeddings/wikiVectorsBoW2','rb')
@@ -69,9 +74,6 @@ infile = open('/afs/inf.ed.ac.uk/user/s16/s1690903/share/cognitive_distortion/wo
 results = pickle.load(infile)
 infile.close()
 
-print('get y labels')
-y = getLabel(results)
-y = np.array(y)
 
 
 print('is creating feature matrix...')
