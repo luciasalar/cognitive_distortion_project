@@ -128,9 +128,9 @@ def getTfidfFeatureArray(doc, word_idx, dim_x, dim_y, en_model):
         if word in en_model.vocab:
             score_matrix[word_idx[word]] += val*en_model[word]
             #score_matrix = score_matrix.reshape(dim_x*dim_y)
-    #sparse_features = sparse.csr_matrix(score_matrix)
-    convert_32 = score_matrix.astype('float32') #nolonger necessary
-    return convert_32
+    sparse_features = sparse.csr_matrix(score_matrix)
+    #convert_32 = score_matrix.astype('float32') #nolonger necessary
+    return sparse_features
 
 
 def convert_vecTfidf(objects, word_idx, dim_x, dim_y, en_model):
