@@ -1,5 +1,9 @@
 #Research Questions:
 
+# RQ1: Can social media data reflect mood alternations that contribute to mental health vulnerability? 
+
+
+# RQ2: What type of cognitive distortions can be inferred from social media data?
 
 This project contains 4 folders:
 
