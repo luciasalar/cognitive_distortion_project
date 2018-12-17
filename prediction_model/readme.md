@@ -10,26 +10,36 @@ The features used in the models contain word embeddings(fasttext, sentiVec) and 
 Models: SVM, SGD(best performance)
 
 
-WvSVM.py: SVM model with word embeddings and LIWC
-WvSGD.py: SGD model with word embeddings and LIWC
+#Files
+* wordEmbedding.py: wordembedding features from pretrained word vectors. Word embeddings are multipled with word count to serve as bag-of-words features in ordered to be used in the traditional ML models. These features are stored as condensed or sparse matrix. 
+* unpackFea.py: Unpack feature matrix and conduct SVD truncate to reduce the dimensions of wordEmbeddings to 500.
+* WvSVM.py: SVM model with word embeddings and LIWC
+* WvSGD.py: SGD model with word embeddings and LIWC
+* CountVec.ipynb: Bag-of-words models with or without LIWC
 
+
+
+#Models
 In the model, word embeddings are multipled with word count to serve as bag-of-words features. Then we reduce the high dimentional feature with SVDtruncate, later on LIWC were added to the feature matrix. Standard scaler is applied after LIWC is added. The data is splitted into train and test, we use the train set to do a grid search(5-fold). SMOTE is added to one of the trainining models in the pipeline. Model with SMOTE over sampling has increased slightly. 
 
 Below is the best model so far
 
-fasttext vectors + SMOTE + liwc (SGD)
-0.7269938650306749
-           1       0.60      0.58      0.59        99
-           2       0.77      0.79      0.78       181
+fasttext vectors + tfidf + liwc (SGD)
+Best scores and best parameters
+0.7254601226993865
+{'sgdclassifier__alpha': 0.05, 'sgdclassifier__class_weight': 'balanced', 'sgdclassifier__loss': 'hinge', 'sgdclassifier__penalty': 'l1'}
+              precision    recall  f1-score   support
 
-   micro avg       0.71      0.71      0.71       280
-   macro avg       0.69      0.68      0.68       280
-weighted avg       0.71      0.71      0.71       
+           1       0.60      0.62      0.61        99
+           2       0.79      0.78      0.78       181
 
-# NOTE: need to further test it on Sentivec and using tfidf on word count, need a bag-of-words model as baseline
-# try majority baseline 
+   micro avg       0.72      0.72      0.72       280
+   macro avg       0.70      0.70      0.70       280
+weighted avg       0.72      0.72      0.72       280    
 
-# this is the BOW baseline model
+
+
+# BOW baseline model
 Valence_prediction.ipython: bag-of-words model 
 
 Best BOW model:
@@ -40,6 +50,6 @@ f1: 0.73 (+/- 0.06)
 0.5716852063884027
 0.7004230565838181
 
-#NOTE: need to try SGD
+#plans: need to try sentiVec and ensemble models
 
 
