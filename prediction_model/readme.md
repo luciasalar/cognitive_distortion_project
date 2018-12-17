@@ -18,9 +18,14 @@ Models: SVM, SGD (best performance)
 * CountVec.ipynb: Bag-of-words models with or without LIWC
 
 
-
+<<<<<<< HEAD
+=======
 #Models
 In the model, word embeddings are multipled with word count to serve as bag-of-words features. Then we reduce the high dimentional feature with SVDtruncate, later on LIWC were added to the feature matrix. Standard scaler is applied after LIWC is added. The data is splitted into train and test, we use the train set to do a grid search(5-fold). SMOTE is added to one of the trainining models in the pipeline. Model with SMOTE over sampling has increased slightly. 
+
+The models are trained on 1000 cases annotated by myself, the cases only contains positve or negaive classes.
+* class 1: negative
+* class 2: positive 
 
 Below is the best model so far
 
@@ -36,28 +41,30 @@ Best scores and best parameters
    micro avg       0.72      0.72      0.72       280
    macro avg       0.70      0.70      0.70       280
 weighted avg       0.72      0.72      0.72       280    
-=======
+
+
 In the model, word embeddings are multipled with word count to serve as bag-of-words features. Then we reduce the high dimensional feature with SVDtruncate, later on LIWC were added to the feature matrix. Standard scaler is applied after LIWC is added. 
 
 Note from Maria: LIWC is starting to be questioned. Good for a baseline model, but we can't just assume that it's the standard. 
-
+Answer: LIWC has been questioned all the time, it's not perfect, but they are very good features. The baseline models are usually simple BOW model.
 
 The data is splitted into train and test, we use the train set to do a grid search (5-fold). SMOTE is added to one of the training models in the pipeline. 
 
 Q from Maria: what is the reason for using SMOTE? Best to spell it out. 
+Answer: The two classes are unevenly distributed, with the second class almost doubled of the first class.
+SMOTE: Synthetic Minority Over-sampling Technique 
 
-Model with SMOTE over sampling has increased slightly. 
+
+Model with SMOTE over sampling has increased the f1 score for both classes slightly. 
 
 Q from Maria: increased what? 
 
 Below is the best model so far
 
 Q from Maria: What is class 1, what is class 2? 
+* class 1: negative
+* class 2: positive 
 
-fasttext vectors + SMOTE + liwc (SGD)
-0.7269938650306749
-           1       0.60      0.58      0.59        99
-           2       0.77      0.79      0.78       181
 >>>>>>> e2d697f42f16fe449619b745fefc2fcf9af9f373
 
 
