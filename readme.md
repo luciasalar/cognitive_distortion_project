@@ -2,8 +2,13 @@
 
 # RQ1: Can social media data reflect mood alternations that contribute to mental health vulnerability? 
 
-
 # RQ2: What type of cognitive distortions can be inferred from social media data?
+
+#Plans and Discussion:
+The preformance of the machine learning model varies at the moment, we can't use it in actual prediction. What I would suggest is to use tools such as http://nlpprogress.com/english/sentiment_analysis.html?fbclid=IwAR0yb7aDpdy6aCNYGq2JGDMW4NxNAt1p8UdY_5c6NfK5XrOFiIDl_Rn3QM8  https://nlp.stanford.edu/sentiment/?fbclid=IwAR0spz9ev4Wgd89SyOaPFBHlDSUkDxzAcNEob52_c__qHkDcblUDfOh3U7s
+to get the 3 year prediction once the annotation is out.  
+
+As for the 3 months annotation, we can still use it to build a classifier (and we should). I have been to a talk two weeks ago about Lifelong learning. https://arxiv.org/pdf/1801.02808.pdf I want to incorporate this approach in predicting psychological perspective of valence using knowledge learned in other sentiment tasks. This is a new approach that worth to try in a slightly different domain and if in the future we need to predict sadness or other type of emotions, knowledge base learning will be very useful. I would also like to work with an NLP colleague to work with this model. I can implement the method but I need an NLP colleague to check my code.
 
 This project contains 4 folders:
 
@@ -13,6 +18,7 @@ This project contains 4 folders:
 4. prediction model
 
 MARIA: It also contains a data folder. What is in the data folder, where does it come from 
+the data file contains LIWC data, processed or preprocessed data, self-labeled data, data that need to be used on the paper is in the important data
 
 
 1. scripts
@@ -60,6 +66,9 @@ Regular users whose last post is less than a week before their CES-D posts (90):
 
 The sample we used for labelling contains 4154 users, duplicated or empty posts were removed
 MARIA: Is that posts or users? 
+
+That is the posts from 77 users
+After removing reposts and quotes, there are 3821 posts left for annotation (refer to /database/database_cleaned.csv)
 
 -------
 
