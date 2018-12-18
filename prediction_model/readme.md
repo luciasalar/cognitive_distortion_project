@@ -49,7 +49,9 @@ Note from Maria: LIWC is starting to be questioned. Good for a baseline model, b
 
 * Answer: LIWC has been questioned all the time, it's not perfect, but they are very good features. The baseline models are usually simple BOW model. POS tags, name entities, emoji and event vow counts are often used in sentiment classification as well.
 
-The data is splitted into train and test, we use the train set to do a grid search (5-fold). SMOTE is added to one of the training models in the pipeline. 
+The data is splitted into train and test, we use the train set to do a grid search (5-fold). 
+
+SMOTE is added to some of the training models in the pipeline. However, the performances of SMOTE varies, it mainly increase recall of class 1 but reduce the precision in both classes.
 
 Q from Maria: what is the reason for using SMOTE? Best to spell it out. 
 
