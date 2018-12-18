@@ -10,7 +10,7 @@ The features used in the models contain word embeddings (fasttext, sentiVec) and
 Models: SVM, SGD (best performance)
 
 
-#Files
+# Files
 * wordEmbedding.py: wordembedding features from pretrained word vectors. Word embeddings are multipled with word count to serve as bag-of-words features in ordered to be used in the traditional ML models. These features are stored as condensed or sparse matrix. 
 * unpackFea.py: Unpack feature matrix and conduct SVD truncate to reduce the dimensions of wordEmbeddings to 500.
 * WvSVM.py: SVM model with word embeddings and LIWC
@@ -18,10 +18,10 @@ Models: SVM, SGD (best performance)
 * CountVec.ipynb: Bag-of-words models with or without LIWC
 
 
-#Models
+# Models
 In the model, word embeddings are multipled with word count to serve as bag-of-words features. Then we reduce the high dimentional feature with SVDtruncate, later on LIWC were added to the feature matrix. Standard scaler is applied after LIWC is added. The data is splitted into train and test, we use the train set to do a grid search(5-fold). SMOTE is added to one of the trainining models in the pipeline. Model with SMOTE over sampling has increased slightly. 
 
-The models are trained on 1000 cases annotated by myself, the cases only contains positve or negaive classes.
+The models are trained on 1000 cases annotated by myself, the cases only contains positve or negative classes.
 * class 1: negative
 * class 2: positive 
 
@@ -49,11 +49,9 @@ Note from Maria: LIWC is starting to be questioned. Good for a baseline model, b
 
 * Answer: LIWC has been questioned all the time, it's not perfect, but they are very good features. The baseline models are usually simple BOW model. POS tags, name entities, emoji and event vow counts are often used in sentiment classification as well.
 
-The data is splitted into train and test, we use the train set to do a grid search (5-fold). 
+The data is splitted into train and test, we use the train set to do a grid search (5-fold). SMOTE is added to one of the training models in the pipeline. 
 
-SMOTE is added to some of the training models in the pipeline. However, the performances of SMOTE varies, it mainly increase recall of class 1 but reduce the precision in both classes.
-
-Q from Maria: what is the reason for using SMOTE? Best to spell it out. 
+Q from Maria: (revised) You need to add a reference and explain why you use SMOTE, and why not some other technique. What is known about the suitability of SMOTE for cases where the second class is double that of the first class?
 
 * Answer: The two classes are unevenly distributed, with the second class almost doubled of the first class.
 * SMOTE: Synthetic Minority Over-sampling Technique 
@@ -84,7 +82,9 @@ f1: 0.73 (+/- 0.06)
 0.7004230565838181
 
 
-#plans: need to try sentiVec and ensemble models
+# plans
+
+need to try sentiVec and ensemble models
 =======
 *NOTE: need to try SGD*
 

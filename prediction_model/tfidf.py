@@ -1,7 +1,39 @@
+str1
+str2
+
+word_id = 0
+word_idx = {}
+for w in str2.split():
+	if w not in word_idx:
+		if w in str1:
+			word_idx[w] = word_id
+			word_id += 1
 
 
-from collections import Counter
-import math
+
+
+str3 = 'python a does not support'
+b= np.zeros((6, 300))
+
+
+a = np.zeros((6, 300))
+for w in str2.split():
+	if w in en_model.vocab:
+		a[word_idx[w]] += en_model[w]
+
+
+
+
+#for each sentence
+#1) tokenize
+#2) computer tf-idf for each word
+#3) arr1 = ['i', 'like', 'pie']
+#   arr2 = ['0.23', '0.32423, '0.842']
+# for i in range(len(arr1)):
+#	word = arr1[i]
+#	score = arr2[i]
+# 	if word in embebdding_vocab:
+#		score_matrix[embedding_vocab[word]] += score*en_model[word]
 
 def getTfidfFeatureArray(doc):
 	tfidfDict = tfidfDict(doc)
@@ -18,7 +50,8 @@ def getTfidfFeatureArray(doc):
 	return score_matrix
 
 
-
+from collections import Counter
+import math
 def __TF(doc):
 	tfDict = {}
 	length = len(doc.split())
@@ -28,10 +61,10 @@ def __TF(doc):
 		tfDict[w] = float(w_count)/length
 	return tfDict
 
-# example1 = 'this is a a sample'
-# __TF(example1)
-# example2 = 'this is another another example example example'
-# __TF(example2)
+example1 = 'this is a a sample'
+__TF(example1)
+example2 = 'this is another another example example example'
+__TF(example2)
 
 #number of docs contain the terms
 def __getDocList(file):
