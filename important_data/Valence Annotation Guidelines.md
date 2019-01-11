@@ -54,6 +54,41 @@ Valence is determined as follows:
 
 As you have seen, valence can be represented by any word form or phrase. This includes nouns, adjectives, verbs, adverbs, and even emoticons. 
 
+## How to annotate jokes?
+*  identify author’s valence as priority. If an author posts weird joke but the author is happy about it, label it as positive.
+
+    * /One of my preschool students told me today that it's not pollution that makes the water in lakes unclean. It's the hobos. I was absolutely speechless. And just so proud./""
+    
+Answer: Author thinks it’s funny, so positive
+
+*  When author’s valence is unclear, identify valence of the content because it’s likely that the authors share what they find is funny
+
+    * TBBT quote - Leonard: you catch more flies with honey than vinegar... Sheldon: yeah, well you catch more than either of them using manure - so what's your point???
+
+Answer: Positive, because the content is funny, author likely to be amused
+
+    * You need to clean under your bed/"-mom  /"I'm pretty sure a lot of people aren't weird like you and won't get on their hands and knees to see what's under there/"-me"
+
+Answer: Positive, because the content is funny, author likely to be amused
+
+
+## How to annotate statement?
+
+* If it’s a statement but we are not sure about the valence of the author, choose neutral.
+
+  * IF You get a message from someone that says I have a photocopy of you please do not open. It is a virus !
+
+
+## How to annotate motivational post:
+* If the post very encouraging, the author might use it to encourage him/herself, choose ‘positive’ 
+
+    * Be Strong in all your encounters with life.  Face the world with courage.  Have faith and act morally and stay strong
+
+* If you are not Not sure the authors' valence when they post the motivational post, select neutral
+
+    * SELF ESTEEM: Far too many people have no idea what they can do 'cause all they have been told is what they can't do!
+
+
 ## What to do if you are not sure about the valence? 
 
 If there are any posts where you are not sure about the correct valence, go with the option that makes the most sense to you, copy and paste the post into a separate document, and describe the reasons why you found your decision difficult. This is particularly important for the first 60 posts you label. 
