@@ -16,6 +16,7 @@ This project contains 4 folders:
 2. important data
 3. paper
 4. prediction model
+5. newScripts
 
 MARIA: It also contains a data folder. What is in the data folder, where does it come from 
 the data file contains LIWC data, processed or preprocessed data, self-labeled data, data that need to be used on the paper is in the important data
@@ -54,6 +55,11 @@ haven't uploaded it yet
 4. prediction model
 prediction models on negative emotion and cognitive distortion
 
+5. newScripts
+* scripts that generate database:DataBase.ipynb (database/database4.csv is data set)
+* stats description of annotation: basicStatsCor.ipynb
+* Valence vector for each user and the stats description: ValenceVector.ipynb
+* CesdClassifier_Valence.ipynb: using valence vector to predcit depression score. 
 
 -----------
 information for sampling:
