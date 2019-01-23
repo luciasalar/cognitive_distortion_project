@@ -1,4 +1,4 @@
-# This folder contain:
+# This folder contains:
 
 * scripts that generate database: DataBase.ipynb (database/database4.csv is data set)
 
