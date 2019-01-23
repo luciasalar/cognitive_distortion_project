@@ -1,0 +1,43 @@
+---
+title: "Interrater_cor"
+author: "lushi"
+date: "23/01/2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(psych)
+```
+
+## Cronbach Alpha
+This script compute the interrater reliabilty between my labels and the annotators' labels
+
+
+```{r read file}
+labels <- read.csv("~/phd_work/cognitive_distortion/important_data/emotions_history.csv", header = F, fill=TRUE,row.names=NULL)
+mylab <- read.csv("~/phd_work/cognitive_distortion/important_data/twoM_newLabels2.csv", header = T, fill=TRUE,row.names=NULL)
+#recode my label 1-> 2 , 2->1
+mylab <- mylab[, c('id','negative_ny')]
+mylab$negative_ny <- recode_factor(mylab$negative_ny, '1' = '2' , '2' = '1', '3' = '3' , '4'= '4', '5'='5')
+```
+
+
+
+```{r cronbach alpha}
+mylab$negative_ny <- as.numeric(as.character(mylab$negative_ny))
+names(labels) <- c('id','userid','label','time')
+#remove duplicated entries. Duplicated entries need to be reanalyzed later 
+l <-  labels[!duplicated(labels$id),]
+interCor <- merge(mylab, l, by='id')
+cor.test(interCor$negative_ny,interCor$label)
+CronBac <- interCor[, c('label','negative_ny')]
+alpha(CronBac)
+```
+
+#statistics of annotators
+```{r basic stats for annotation}
+table(interCor$userid)
+```
