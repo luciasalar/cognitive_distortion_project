@@ -1,6 +1,6 @@
-#This folder contain:
+# This folder contain:
 
-* scripts that generate database:DataBase.ipynb (database/database4.csv is data set)
+* scripts that generate database: DataBase.ipynb (database/database4.csv is data set)
 
 * stats description of annotation: basicStatsCor.ipynb
 
