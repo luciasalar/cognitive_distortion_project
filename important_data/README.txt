@@ -36,5 +36,6 @@ users_to_be_analysed.csv: regular posters who have at least one post after they 
 This file contain SWL, CESD and big5 result, can match with other files by 'userid'
 
 CrossAnnotation.csv crossAnnotation data, including a test sample (10 posts)
+Id80PerRetained.csv userid with more than 80% posts retained (we removed posts with foreign language that we can't understand)
 
 
