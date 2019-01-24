@@ -10,3 +10,4 @@
 
 * Interrater_reliability.Rmd: this script computes the interrater reliability between my annotation and the students annotation. Basic stats of student annotation.
 
+* statsForMoodVec.Rmd: this script computes the stats for data that built the mood vector
