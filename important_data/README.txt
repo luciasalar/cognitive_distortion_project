@@ -35,4 +35,6 @@ ValenceVec.csv: valence vector for each users in 60 days before they fill out th
 users_to_be_analysed.csv: regular posters who have at least one post after they fill out CESD
 This file contain SWL, CESD and big5 result, can match with other files by 'userid'
 
+CrossAnnotation.csv crossAnnotation data, including a test sample (10 posts)
+
 
