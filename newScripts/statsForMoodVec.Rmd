@@ -1,0 +1,49 @@
+---
+title: "statsForMoodVec"
+author: "Lushi Chen"
+date: "24 January 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
+```
+
+## here we check how many posts were removed in each user (foreign language), remove participants who have more than 80% of posts removed
+52 participants here have all their posts retained, 16 participants have less than 10% of posts removed, 6 have 10% - 40% of posts removed, 3 have more than 80% posts removed
+
+Here we remove participants with 80% of the posts removed. The rest of the participants have 55.93 posts in average in 60 days. For number of empty days per user, see ValenceVector.ipynb
+
+```{r }
+#data remove noise
+cleanData <- read.csv("~/phd_work/mypersonality_data/cognitive_distortion/database/twoM_database.csv", header = T, fill=TRUE,row.names=NULL)
+#all data
+AllData <- read.csv("~/phd_work/mypersonality_data/cognitive_distortion/database/twoMonthsAnno.csv", header = T, fill=TRUE,row.names=NULL)
+#count number of posts per user
+cleanCount <- data.frame(table(cleanData$userid))
+names(cleanCount) <- c('userid','cleanCount')
+noiseCount <- data.frame(table(AllData$userid_y))
+names(noiseCount) <- c('userid','noiseCount')
+counts <- merge(cleanCount, noiseCount, by = 'userid')
+#percentatage of posts being removed
+counts$removePer <- 1 - (counts$cleanCount/counts$noiseCount)
+#partipants have how many posts removed?
+c <- counts[counts$removePer < 0.00001,]
+length(c$userid)
+
+c2 <- counts[counts$removePer < 0.1 & counts$removePer > 0,]
+length(c2$userid)
+
+c3 <- counts[counts$removePer < 0.4 & counts$removePer > 0.1,]
+length(c3$userid)
+
+c4 <- counts[counts$removePer > 0.8,]
+length(c4$userid)
+
+#remove participants with less than 80% of posts removed
+data <- counts[counts$removePer < 0.8,]
+summary(data)
+
+write.csv(data, '~/phd_work/mypersonality_data/cognitive_distortion/important_data/Id80PerRetained.csv')
+```
+
