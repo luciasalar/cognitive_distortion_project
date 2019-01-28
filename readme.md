@@ -1,10 +1,9 @@
-#Research Questions:
+# Research Questions:
 
-# RQ1: Can social media data reflect mood alternations that contribute to mental health vulnerability? 
+* RQ1: Can social media data reflect mood alternations that contribute to mental health vulnerability? 
+* RQ2: What type of cognitive distortions can be inferred from social media data?
 
-# RQ2: What type of cognitive distortions can be inferred from social media data?
-
-#Plans and Discussion:
+## Plans and Discussion:
 The preformance of the machine learning model varies at the moment, we can't use it in actual prediction. What I would suggest is to use tools such as http://nlpprogress.com/english/sentiment_analysis.html?fbclid=IwAR0yb7aDpdy6aCNYGq2JGDMW4NxNAt1p8UdY_5c6NfK5XrOFiIDl_Rn3QM8  https://nlp.stanford.edu/sentiment/?fbclid=IwAR0spz9ev4Wgd89SyOaPFBHlDSUkDxzAcNEob52_c__qHkDcblUDfOh3U7s
 to get the 3 year prediction once the annotation is out.  
 
