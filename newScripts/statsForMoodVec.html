@@ -130,6 +130,8 @@ $(document).ready(function () {
 <h2>here we check how many posts were removed in each user (foreign language), remove participants who have more than 80% of posts removed</h2>
 <p>52 participants here have all their posts retained, 16 participants have less than 10% of posts removed, 6 have 10% - 40% of posts removed, 3 have more than 80% posts removed</p>
 <p>Here we remove participants with 80% of the posts removed. The rest of the participants have 55.93 posts in average in 60 days. For number of empty days per user, see ValenceVector.ipynb</p>
+<p>from ValenceVector.ipynb we have participants mood vector stats. The number of empty days in average is 28 days out of 60 days</p>
+<p>EmptyDays NegativeDays PositiveDays NeutralDays MixedDays count 74.000000 74.000000 74.000000 74.000000 74.000000 mean 28.364865 9.162162 16.243243 5.648649 0.581081 std 11.422849 5.627786 8.936321 3.624243 0.950944 min 0.000000 0.000000 0.000000 0.000000 0.000000 25% 23.250000 5.250000 11.000000 3.000000 0.000000 50% 30.000000 8.500000 15.000000 5.000000 0.000000 75% 37.000000 12.000000 19.750000 8.000000 1.000000 max 43.000000 39.000000 47.000000 14.000000 6.000000</p>
 <pre class="r"><code>#data remove noise
 cleanData &lt;- read.csv(&quot;~/phd_work/mypersonality_data/cognitive_distortion/database/twoM_database.csv&quot;, header = T, fill=TRUE,row.names=NULL)
 #all data

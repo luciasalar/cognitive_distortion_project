@@ -14,6 +14,9 @@ knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
 
 Here we remove participants with 80% of the posts removed. The rest of the participants have 55.93 posts in average in 60 days. For number of empty days per user, see ValenceVector.ipynb
 
+from ValenceVector.ipynb we have participants mood vector stats. The number of empty days in average is 28 days out of 60 days
+
+
 ```{r }
 #data remove noise
 cleanData <- read.csv("~/phd_work/mypersonality_data/cognitive_distortion/database/twoM_database.csv", header = T, fill=TRUE,row.names=NULL)
