@@ -1,4 +1,4 @@
-##Valence vector:
+## This document describe the design of mood vector:
 
 Studies suggest that mood states prompt valenced match emotion, for example, frequent positive emotion within a certain time window indicate a positive mood. The alternation of mood is important for identifying affective disorders. Valence, which is the polarity of mood, emotions, events or situations, is often studied in the social media context as an indicator for mental health. Scholars often inspect post valence in an aggregated form, for example, to identify the correlation between average valence and depressive symptoms. Despite the fact that the aggregated form of valence miss the information of frequency and time, it is still an important feature to infer mental health symptoms. 
 
