@@ -1,4 +1,4 @@
-#Cognitive Distortion Annotation Guideline 
+# Cognitive Distortion Annotation Guideline 
 
 Lucia Chen
 
