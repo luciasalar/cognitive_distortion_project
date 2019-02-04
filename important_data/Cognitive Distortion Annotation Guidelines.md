@@ -51,6 +51,7 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 	Example 2: A person with dichotomous thinking may meet a new coworker at work. In the beginning, the coworker is viewed as amazing, perfect, and better than any other coworker or friend ever encountered before. People with dichotomous thinking tend to have favorites and to believe that everything about a favorite person or thing is superior to others. However, as time goes on, someone with dichotomous thinking may suddenly swing to the opposite extreme. If ignored by the coworker, or if the co-worker behaves in a disappointing way, a person with dichotomous thinking may lose respect for or hate this formerly favorite coworker, unable to sustain relationships that are not distinctly "love" or "hate". 				
 					
 *  Disqualifying the Positive. Denying a situation/trait/event is positive.
+
 	Example: The imposter syndrome 
 
 	Example: A friend compliments you on a dinner you made, but you decide that “they are just saying that to be nice” or “they are trying to get something out of me”.
@@ -93,7 +94,9 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 * Labeling. Labeling oneself or others using derogatory names.
 
 	Example 1: I’m a loser.
+	
 	Example 2: I failed a test, I am a failure.	
+	
 	Example 3: she is frequently late to work, she is irresponsible. 
 				
 * Magnification. Exaggerate the importance of your errors, fears, and imperfections. 
@@ -111,16 +114,20 @@ Catastrophizing thought often involves Jumping to Conclusions, catastrophizing m
 * Minimization. Minimizing or discounting the importance of some event, trait, or circumstance. Note: Similar to Disqualifying the Positive, minimization emphasis discounting the IMPORTANCE of something, not whether it is positive
 	
 	Example 1: People tell you that you have done a good job but you are still anxious that it's not good enough
+	
 	Example 2: What I say doesn’t matter anyway, my opinion is not important to the group.
 						
 * Overgeneralization. When someone over generalizes, they see that one negative event in their life as a never ending pattern. People with overgeneralization thinking patterns tend to use “always”, “every” and “never” very often.
 
 	Example 1:
 	Why does this always happen to me?	
+	
 	Example 2:
 	It doesn’t matter what my choices are, they always fall flat.
+	
 	Example 3:
 	Nothing good ever happens to me.
+	
 	Example 4:
 	Everything is always terrible.
 
