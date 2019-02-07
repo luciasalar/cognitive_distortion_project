@@ -15,12 +15,19 @@ The algorithm is implemented as below:
 for each day, if negative_count > positive_count or negative_count > neutral_count or neative_count > mix_count, assign negative to that day; if positive_count > negative_count or positive_count > neutral_count or positive_count > mix_count, assign positive to that day; if mix_count >= positive_count or mix_count >= negative_count or negative_count == positive_count, assign mix to that day; if neutral_count >= positive_count or neutral_count >= negative_count or neutral_count > mix_count, assign neutral to that day.
 
 
-* Design 2: Percentage of dominant valence is assigned to each day. In this design, we assigned a valence score (negative: -1, neutral: 1, positive: 1) to each post. Valence score of a day is determined by Valence Score(dominant valence)* Number of Posts(dominant valence)/ Number of valenced posts. For example, a user posted 1 negative post, 2 positive posts on Day 1, valence assignment for Day 1 = (1*2)/(1+2).
+* Design 2: Percentage of dominant valence is assigned to each day. In this design, we assigned a valence score (negative: -1, neutral: 0.01, positive: 1 1) to each post. Valence score of a day is determined by Valence Score(dominant valence)* Number of Posts(dominant valence)/ Number of valenced posts. For example, a user posted 1 negative post, 2 positive posts on Day 1, valence assignment for Day 1 = (1* 2)/(1+2).
 
 The disadvantage of this approach is that negative, neutral and positive value represent an increasement of valence, we can assign -1, 0.01, 1 to them. However, mixed and empty is not an increasement of valence. We need to have these two classes as seperate features. The disadvantage of this approach is that mood vector in here only include information of 3 classes, mixed class and empty days need to be represented by a separate categorical feature. In this separate feature, empty day is assigned 0, mixed day is assigned 1, other assgin 2. We can combine the valence and categorical feature as tuple, the feature will look like [(0.33, 0), (-0.56, 2)...]. This is a 3d feature, when used in a machine learning model, we need to convert it to 2d
 
 The algorithm is implemented as below:
 * after applied design 1, if assigned negative, new assignment = (1* N(neg))/N(all); if assigned positive, new assignment = (3* N(pos))/N(all); if assigned neutral, new assignment = 0, if assigned empty, new assigiment = 0. if assigned mixed, new assigiment = 0. Since 'mixed class' is very special that it doesn't indicate an increasement of valence, here we need to have a separate feature for the mixed class, in the new feature, if assigned mixed, (1* N(mix))/N(all), others classes are all assign 0.
+
+
+* Design 3:  In this design, we will plot positive, we will plot the time series of negative and negative valence separately. We assigned a dominant valence score to to each day that has been annotated as positive/negative according to design 1. Valence score of a day is determined by Valence Score(dominant valence)* Number of Posts(dominant valence)/ Number of valenced posts. For example, on a day which positive valence is the dominant valence, the user posted 1 negative post, 2 positive posts, positive valence assignment for day = (1* 2)/(1+2). We assign 0 to other days. 
+
+
+* Design 4:  In this design, we will plot positive, we will plot the time series of negative and negative valence separately. We assigned a valence frequency score to to each day. Valence frequency score is determined by the amount of positive/negative valence posts on that day. For example, on a day with 2 positive posts,  valence frequency assignment for day = 2. We assign 0 to other days. The disadvantage of this approach is that the time vector does not include information of how dominant the type of valence is.
+
 
 
 -----Above text should answer the questions below --------------------
