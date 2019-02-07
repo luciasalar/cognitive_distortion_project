@@ -1,0 +1,49 @@
+---
+title: "cronbacAlpa"
+author: "Lushi Chen"
+date: "7 February 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require(knitr)
+require(dplyr)
+library(ltm)
+#knitr::opts_chunk$set(echo = TRUE)
+#setwd("~/phd_work/mypersonality_data/cognitive_distortion/")
+```
+
+## This script compute interater reliability of 40 posts from 4 annotators
+
+Annotators use easyanno.com:  
+
+*sign in with testing@gmail.com, key: 123456  
+
+*Participants complete tasks under their names  
+
+
+
+readfile and recode
+
+```{r cars}
+labels <- read.csv("~/phd_work/mypersonality_data/cognitive_distortion/important_data/annotatedData/cronbacAlpa.csv")
+#recode labels
+recode <- function(vector){
+  Newvector <- recode_factor(vector, 'negative' = 1 , 'positive' = 2, 'mix' = 3 , 'neutral'= 4, 'can\'t understand'= 5)
+  return (Newvector)
+}
+
+labels$Lucia <- recode(labels$Lucia)
+labels$Goda <- recode(labels$Goda)
+labels$Ramirez <- recode(labels$Ramirez)
+labels$Amy <- recode(labels$Amy)
+
+```
+
+Here's the cronbac alpha value
+
+```{r pressure, echo=FALSE}
+#CronBac <- interCor[, c('label','negative_ny')]
+cronbach.alpha(labels[4:7], standardized = FALSE, CI = FALSE, probs = c(0.025, 0.975), B = 1000, na.rm = FALSE)
+```
+
