@@ -1,4 +1,4 @@
-##This file describe how we use the time series (mood vector)
+## This file describe how we use the time series (mood vector)
 
 1. Provide a compact valence description of the dataset (2 months before participants reported CESD)
 2. Demonstrate trends of positive and negative valence 60 days before participants reported CESD. To demonstrate the valence, it's good to know the magnitude of the valence by computing the proportion of dominant valence posts among all the posts,design 3 is more appropriate to this task.
