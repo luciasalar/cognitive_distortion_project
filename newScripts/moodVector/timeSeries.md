@@ -55,7 +55,7 @@ Roelofs, J., Huibers, M., Peeters, F., Arntz, A., & van Os, J. (2008). Ruminatio
 Barnhofer, T., & Chittka, T. (2010). Cognitive reactivity mediates the relationship between neuroticism and depression. Behaviour Research and Therapy, 48(4), 275-281.
 
 
-##Section 3: The hidden markov model 
+## Section 3: The hidden markov model 
 **The observable layer**
 1. **design 1**
 Use design 4 valence vector as the observable layer, we will have a positive valence vector and a negative valence vector. In the positive valence vector, we will have two states: positive, other. In the negative valence vector, we have two states: negative, other. 
