@@ -1,0 +1,60 @@
+---
+title: "correlationMatrix"
+author: "lushi"
+date: "13/03/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(Hmisc)
+```
+
+## valenceVec frequency with empty days and all variables
+```{r read file}
+
+file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyFreqAllVar.csv")
+file['userid'] <- NULL
+file['X'] <- NULL
+ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
+ValenceEmptyFreqcorMa
+
+```
+
+#post valence transition with empty days
+
+```{r pressure, echo=FALSE}
+
+file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv")
+file['userid'] <- NULL
+file['X'] <- NULL
+ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
+ValenceEmptyFreqcorMa
+```
+
+# mood transitions
+```{r }
+file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv")
+file['userid'] <- NULL
+file['X'] <- NULL
+ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
+ValenceEmptyFreqcorMa
+
+```
+
+#post valence with empty days
+```{r }
+file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/postsValenceTranEmptyAllVar.csv")
+file['userid'] <- NULL
+file['X'] <- NULL
+ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
+ValenceEmptyFreqcorMa
+
+
+```
+
+
+
+
+
+

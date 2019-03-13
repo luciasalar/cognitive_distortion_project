@@ -1,10 +1,21 @@
-# This folder contains everything about the mood vector:
+## This folder contains everything about the mood vector:
 
-* statsForMoodVec.Rmd: this script computes the stats for data that built the mood vector
+scripts to generate vectors:
 
-* MoodVec_Design1.ipynb & MoodVec_Design2.ipynb: scripts that generated the mood vector
+* MoodVector.py: mood vector
 
-* moodVectorsData: pickle mood vectors 
+* postVecEmpty.py: post valece vector contain empty days
+
+* postVectNoEmpty.py: post valence vector does not contain empty days
+
+These scripts compute the mood vector and valence vector, each script generates	
+	* a pickle object for the transition states, filename.pickle, 
+	* a csv file of the vector
+	* a csv file to show the correlation between the vectors and all other variables
+	* a csv file with vector information on user level and all other variables
+(all the generated files are in moodVectorsData)
+
+
 
 * predictCESD.ipynb: using mood vector to predict CESD
 
@@ -12,9 +23,6 @@
 
 * timeSeries.md: this file explains how we use the time series.
 
-* TranscorrelationMatrix.csv: this file display the correlation of all the transition states with personality, swl and cesd
+Intermediate files directory:
+jupyter notebook files used for designing the vectors
 
-* HMM_ObservableLayer.ipynb: this file compute the transition probabilities of the the observable layer (valence vector). This file also generates TranscorrelationMatrix.csv, TransitionProb.csv 
-
-
-* TransitionProb.csv: transition probabilities

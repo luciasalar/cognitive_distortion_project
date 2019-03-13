@@ -6,7 +6,7 @@ Valence in social media text can be better represented other than an aggregated 
 
 The mood vector based on social media data reflects mood pattern change, however, the mood pattern shown on social media data might be different from participants' real mood pattern because the number of posts each day varies and people do not post every day. Posting 1 or 2 negative posts on a day doesn't represent the participant has a negative mood on that day. Therefore, mood vector only represent mood changes based on social media data, but not necessarily real life mood. With this limitation in mine, we investigate how mood reflected by social media data related to depressive symptoms. In our sample, we selected participants who posted at least on more than half of the days in two months, in average, participants have 28 days without posting anything. 
 
-There are two designs for the mood vector so far:
+# There are two designs for the mood vector so far (WE ADOPTED DESIGN ONE):
 
 * Design 1: Dominant valence is assigned to each day. For each day, the type of valence that occurred most often in posts is assigned to that day in the mood vector. The limitation for this approach is that the vector does not reflect the proportion of the dominant valence posts. The advantage of this design is that we have one vector including information of four types of valence and empty days in categorical data.
 
@@ -28,6 +28,79 @@ The algorithm is implemented as below:
 
 * Design 4:  In this design, we will plot positive, we will plot the time series of negative and negative valence separately. We assigned a valence frequency score to to each day. Valence frequency score is determined by the amount of positive/negative valence posts on that day. For example, on a day with 2 positive posts,  valence frequency assignment for day = 2. We assign 0 to other days. The disadvantage of this approach is that the time vector does not include information of how dominant the type of valence is.
 
+# Final designs
+
+Representation 1: Daily Mood Representation 
+
+Hypothesis 1: Social media daily mood transition states reflects mental health dimensions. (REF)
+Assign dominant valence to each day, compute the transition states from day to day 
+
+Vector = [  P P E N N  ] 
+
+P - P = 1
+
+P - E = 1
+
+N - E = 1 (N -> E, E -> N)
+
+N - N = 1 
+
+Hypothesis 2: Social media mood frequency reflects mental health dimensions.
+Here we compute the frequency of mood episodes
+
+Vector = [  P P E N N  ] 
+
+P = ⅖
+
+N = ⅖
+
+E = ⅕ 
+
+Representation 2: Post Valence Representation 
+
+Hypothesis 1: Social media valence transition states reflects mental health dimensions
+
+Design 1: Empty day is count as a valence in this design
+
+Vector = [ P P N P N P P N E N N P N] 
+
+P - N = 6 (P -> N, N -> P)
+
+N - E = 2 (N -> E, E -> N)
+
+P - P = 2
+
+N - N = 1 
+
+Design 2: Empty day is removed from the valence in this design
+
+Vector = [ P P N P N P P N N N P N] 
+
+P - N = 6 (P -> N, N -> P)
+
+N - N = 1 
+
+P - P = 2
+
+Hypothesis 2: Social media valence frequency reflects mental health dimensions
+
+Design 1: Empty day is count as a valence in this design
+
+Vector = [ P P N P N P P N E N N P N] 
+
+P = 6/13
+
+E = 1/13
+
+N = 6/13
+
+Design 2: Empty day is removed from the valence in this design
+
+Vector = [ P P N P N P P N N N P N] 
+
+P = 6/12
+
+N = 6/12
 
 
 -----Above text should answer the questions below --------------------

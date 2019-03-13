@@ -13,22 +13,16 @@ require(dplyr)
 library(ltm)
 #knitr::opts_chunk$set(echo = TRUE)
 #setwd("~/phd_work/mypersonality_data/cognitive_distortion/")
+#setwd('/Users/lucia/phd_work/cognitive_distortion/') 
 ```
 
 ## This script compute interater reliability of 40 posts from 4 annotators
-
-Annotators use easyanno.com:  
-
-*sign in with testing@gmail.com, key: 123456  
-
-*Participants complete tasks under their names  
-
 
 
 readfile and recode
 
 ```{r cars}
-labels <- read.csv("~/phd_work/mypersonality_data/cognitive_distortion/important_data/annotatedData/cronbacAlpa.csv")
+labels <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/annotatedData/cronbacAlpa.csv")
 #recode labels
 recode <- function(vector){
   Newvector <- recode_factor(vector, 'negative' = 1 , 'positive' = 2, 'mix' = 3 , 'neutral'= 4, 'can\'t understand'= 5)
@@ -39,6 +33,15 @@ labels$Lucia <- recode(labels$Lucia)
 labels$Goda <- recode(labels$Goda)
 labels$Ramirez <- recode(labels$Ramirez)
 labels$Amy <- recode(labels$Amy)
+labels$Mathilda. <- recode(labels$Mathilda)
+
+#for new annotators
+# new <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/annotatedData/emotions_historyB_Feb27.csv", header = T)
+# colnames(new) <- c('id', 'annotator','labels','time')
+# new <- new[new$annotator == '%44553%',]
+# new <- new[, c('id', 'labels')]
+# 
+# newid <- merge(labels, new, by ='id', all.x = T)
 
 ```
 
@@ -46,6 +49,6 @@ Here's the cronbac alpha value
 
 ```{r pressure, echo=FALSE}
 #CronBac <- interCor[, c('label','negative_ny')]
-cronbach.alpha(labels[4:7], standardized = FALSE, CI = FALSE, probs = c(0.025, 0.975), B = 1000, na.rm = FALSE)
+cronbach.alpha(labels[4:8], standardized = FALSE, CI = FALSE, probs = c(0.025, 0.975), B = 1000, na.rm = FALSE)
 ```
 
