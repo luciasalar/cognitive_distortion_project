@@ -8,16 +8,36 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 require(Hmisc)
+require(psych)
+#devtools::install_github("mdscheuerell/muti")
+require(muti)
+require(gam)
 ```
 
 ## valenceVec frequency with empty days and all variables
 ```{r read file}
 
-file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyFreqAllVar.csv")
-file['userid'] <- NULL
-file['X'] <- NULL
-ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
-ValenceEmptyFreqcorMa
+file1 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyFreqAllVar.csv")
+
+getCorrelations <- function(file){
+  file['userid'] <- NULL
+  file['X'] <- NULL
+  #ValenceEmptyFreqcorMa <- rcorr.adjust(as.matrix(file))
+  ValenceEmptyFreqcorMa <- corr.test(as.matrix(file),use = "pairwise", method="pearson",adjust="holm",alpha=.05)
+  print(ValenceEmptyFreqcorMa)
+}
+
+getCorrelations(file1)
+
+
+getRegression <- function(file, regFile){
+  g <- lm(file$agr ~ .,  data=regFile,
+  trace=TRUE)
+  summary(g)
+}
+
+regFile = file[2:6]
+getRegression(file, regFile)
 
 ```
 
@@ -25,36 +45,61 @@ ValenceEmptyFreqcorMa
 
 ```{r pressure, echo=FALSE}
 
-file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv")
-file['userid'] <- NULL
-file['X'] <- NULL
-ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
-ValenceEmptyFreqcorMa
+file2 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv")
+getCorrelations(file2)
+
 ```
 
 # mood transitions
 ```{r }
-file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv")
-file['userid'] <- NULL
-file['X'] <- NULL
-ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
-ValenceEmptyFreqcorMa
+file3 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv")
+getCorrelations(file3)
 
 ```
 
 #post valence with empty days
 ```{r }
-file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/postsValenceTranEmptyAllVar.csv")
-file['userid'] <- NULL
-file['X'] <- NULL
-ValenceEmptyFreqcorMa <- rcorr(as.matrix(file))
-ValenceEmptyFreqcorMa
+file4 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyAllVar.csv")
+getCorrelations(file3)
 
 
 ```
 
+#Use mutual information 
+```{r}
+
+muti(file$CESD_sum, file$EmptyAndMix)
+
+```
+#Generalized Additive Models
+```{r }
+g <- gam(agr ~ emptyTran +negaTran + emptyTran+ negaTran+posiTran+mixTran + neuTran+ PosAndNeg+ MixAndPos +MixAndNeg +MixAndNeu +NeuAndPos+ NeuAndNeg + EmptyAndPos+ EmptyAndNeg +EmptyAndMix +EmptyAndNeu, family = gaussian, data=file,
+trace=TRUE)
+summary(g)
 
 
+```
+
+```{r }
+g <- gam(agr ~ emptyTran +negaTran + emptyTran+ negaTran+posiTran+mixTran + neuTran+ PosAndNeg+ MixAndPos +MixAndNeg +MixAndNeu +NeuAndPos+ NeuAndNeg + EmptyAndPos+ EmptyAndNeg +EmptyAndMix +EmptyAndNeu, family = gaussian, data=file,
+trace=TRUE)
+summary(g)
+
+
+```
+
+```{r }
+file2 <- file2[, c(2:11,13)]
+file3 <- file3[, c(2:16,18)]
+file4 <- file4[, c(2:16,18)]
+allFile <- merge(file1, file2, by = 'userid')
+allFile <- merge(allFile, file3, by = 'userid')
+allFile <- merge(allFile, file4, by = 'userid')
+
+fea <- allFile[, c(3:7, 15:54)]
+reg <- lm(allFile$neu ~., data = fea)
+summary(reg)
+```
 
 
 

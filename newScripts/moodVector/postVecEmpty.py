@@ -203,7 +203,7 @@ def getFrequencyCor(ValenceVec,savePath1,savePath2,alldata):
         
 path = '/Users/lucia/phd_work/cognitive_distortion'
 #this file contain users with 80% of posts retained after cleaning foreign language
-file = pd.read_csv(path + '/data/important_data/twoM_newLabels80P.csv')
+file = pd.read_csv(path + '/data/important_data/cleanLabelsReverse.csv')
 # sort posts according to time
 file = SortTime(file)
 

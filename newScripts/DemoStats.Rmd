@@ -1,0 +1,62 @@
+---
+title: "Basic_stats"
+author: "lushi"
+date: "26/03/2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#This file shows the basic demographic information from the annotated users (N= 77)
+```{r cars}
+library(tidyverse)
+```
+
+Continous variables
+```{r pressure, echo=FALSE}
+#setwd('/Users/lucia/phd_work/cognitive_distortion/') 
+allData <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/user_scale_post_time2.csv')
+#merge with annotated users
+users <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/twoM_newLabels.csv')
+users <- users[!duplicated(users$userid), ]
+users <- users$userid
+AnnotatedUsersInf <- allData[allData$userid %in% users,]
+#select continous values
+SelData <- allData[, c(5:6, 14, 24, 26:30, 36:37)]
+summary(SelData)
+
+```
+
+
+
+```{r }
+p1  <- boxplot(SelData[, c(1:2, 4)], data=SelData, main="Demographic Informtation", names=names(SelData[, c(1:2, 4)]))
+p2 <- boxplot(SelData[, c(3, 11)], data=SelData, main="Demographic Informtation", names=names(SelData[, c(3, 11)]))
+p3 <- boxplot(SelData[, c(5:9)], data=SelData, main="Demographic Informtation", names=names(SelData[, c(5:9)]))
+```
+
+Categorical variables
+Percentage of people in specific demographic groups
+Since the instructions from the website was down, we don't have information for the acronyms 
+```{r }
+SelDataCat <- allData[, c(9:10, 12, 23)]
+prop.table(table(SelDataCat$marital_status))
+prop.table(table(SelDataCat$ethnicity))
+prop.table(table(SelDataCat$gender))
+prop.table(table(SelDataCat$locale))
+```
+
+
+
+
+
+
+
+
+
+
+
