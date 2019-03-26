@@ -19,14 +19,16 @@ library(tidyverse)
 Continous variables
 ```{r pressure, echo=FALSE}
 #setwd('/Users/lucia/phd_work/cognitive_distortion/') 
-allData <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/user_scale_post_time2.csv')
+#'/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
+allData <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
+allData <- subset(allData, age > 17 | is.na(age))
 #merge with annotated users
-users <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/twoM_newLabels.csv')
+users <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/twoM_newLabels2.csv')
 users <- users[!duplicated(users$userid), ]
 users <- users$userid
 AnnotatedUsersInf <- allData[allData$userid %in% users,]
 #select continous values
-SelData <- allData[, c(5:6, 14, 24, 26:30, 36:37)]
+SelData <- AnnotatedUsersInf[, c(5:6, 14, 24, 26:30, 36:37)]
 summary(SelData)
 
 ```
@@ -43,20 +45,23 @@ Categorical variables
 Percentage of people in specific demographic groups
 Since the instructions from the website was down, we don't have information for the acronyms 
 ```{r }
-SelDataCat <- allData[, c(9:10, 12, 23)]
+SelDataCat <- AnnotatedUsersInf[, c(9:10, 12, 23)]
 prop.table(table(SelDataCat$marital_status))
 prop.table(table(SelDataCat$ethnicity))
 prop.table(table(SelDataCat$gender))
 prop.table(table(SelDataCat$locale))
 ```
 
+gender female = 1, male = 0
+```{r }
+#cut off score as 16
+table(AnnotatedUsersInf$gender, AnnotatedUsersInf$CESD_sum > 16)
+table(AnnotatedUsersInf$gender, AnnotatedUsersInf$CESD_sum > 21)
 
 
 
 
-
-
-
+```
 
 
 
