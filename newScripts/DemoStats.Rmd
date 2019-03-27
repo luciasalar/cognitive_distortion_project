@@ -18,8 +18,8 @@ library(tidyverse)
 
 Continous variables
 ```{r pressure, echo=FALSE}
-#setwd('/Users/lucia/phd_work/cognitive_distortion/') 
-#'/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
+# setwd('/Users/lucia/phd_work/cognitive_distortion/') 
+# '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
 allData <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
 allData <- subset(allData, age > 17 | is.na(age))
 #merge with annotated users
@@ -43,7 +43,8 @@ p3 <- boxplot(SelData[, c(5:9)], data=SelData, main="Demographic Informtation", 
 
 Categorical variables
 Percentage of people in specific demographic groups
-Since the instructions from the website was down, we don't have information for the acronyms 
+The acronyms are standard locale / language acronyms.
+
 ```{r }
 SelDataCat <- AnnotatedUsersInf[, c(9:10, 12, 23)]
 prop.table(table(SelDataCat$marital_status))
@@ -54,9 +55,13 @@ prop.table(table(SelDataCat$locale))
 
 gender female = 1, male = 0
 ```{r }
-#cut off score as 16
+# cut off score as 16
 table(AnnotatedUsersInf$gender, AnnotatedUsersInf$CESD_sum > 16)
 table(AnnotatedUsersInf$gender, AnnotatedUsersInf$CESD_sum > 21)
+table(AnnotatedUsersInf$ethnicity, AnnotatedUsersInf$CESD_sum > 16)
+table(AnnotatedUsersInf$ethnicity, AnnotatedUsersInf$CESD_sum > 21)
+table(AnnotatedUsersInf$marital_status, AnnotatedUsersInf$CESD_sum > 16)
+table(AnnotatedUsersInf$marital_status, AnnotatedUsersInf$CESD_sum > 21)
 
 
 
