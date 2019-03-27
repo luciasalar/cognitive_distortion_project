@@ -1,0 +1,83 @@
+---
+title: "LyricsAnalysis"
+author: "lushi"
+date: "27/03/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(tidyverse)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/PostsLyricsTranEmptyAllVar.csv")
+
+getCorrelations <- function(file){
+  file['userid'] <- NULL
+  file['X'] <- NULL
+  #ValenceEmptyFreqcorMa <- rcorr.adjust(as.matrix(file))
+  ValenceEmptyFreqcorMa <- corr.test(as.matrix(file),use = "pairwise", method="pearson",adjust="holm",alpha=.05)
+  print(ValenceEmptyFreqcorMa)
+}
+getCorrelations(file)
+```
+30% positive, 22% negative 18% mix, 24% neutral 
+
+```{r}
+quotes <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/lyrics/QuotesDetected_all.csv")
+quotes <- quotes[, c('text', 'label')]
+posts <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/cleanLabelsReverse.csv")
+quoteVal <- merge(quotes, posts, by = 'text', all.x = T)
+
+quoteOnlyVal<- quoteVal[quoteVal$label == 'quote'|quoteVal$label == 'suspect',]
+
+print('valence in quotes')
+round(prop.table(table(quoteOnlyVal$negative_ny)),2)
+print('valence in the whole sample')
+round(prop.table(table(posts$negative_ny)),2)
+```
+
+Which type of valence non-originate quote is most correlated with depressive symptoms
+```{r }
+CESD <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/user_scale_post_time2.csv")
+CESD <- CESD[,c('userid', 'CESD_sum')]
+quoteOnlyValCesd <- merge(quoteVal, CESD, by = 'userid', all.x = T)
+#posQuote <- quoteOnlyValCesd[quoteOnlyValCesd$negative_ny == 2 & quoteOnlyValCesd$label == 'quote' |quoteOnlyValCesd$negative_ny == 2 & quoteOnlyValCesd$label == 'suspect',]
+#posQuote <- posQuote[!duplicated(posQuote$userid),]
+
+data.frame(table(quoteOnlyValCesd$userid))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -65,6 +65,15 @@ getCorrelations(file3)
 
 ```
 
+```{r }
+
+file4 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/PostsLyricsTranEmptyAllVar.csv")
+getCorrelations(file4)
+
+
+```
+
+
 #Use mutual information 
 ```{r}
 

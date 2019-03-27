@@ -14,22 +14,29 @@ knitr::opts_chunk$set(echo = TRUE)
 #This file shows the basic demographic information from the annotated users (N= 77)
 ```{r cars}
 library(tidyverse)
+library(stargazer)
 ```
-
+Id80PerRetained.csv userid with more than 80% posts retained (we removed posts with foreign language that we can't understand)
+We have 70 participants in total after removing them 
 Continous variables
 ```{r pressure, echo=FALSE}
 # setwd('/Users/lucia/phd_work/cognitive_distortion/') 
 # '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
-allData <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
+allData <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
 allData <- subset(allData, age > 17 | is.na(age))
 #merge with annotated users
-users <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/twoM_newLabels2.csv')
+users <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/important_data/twoM_newLabels80P.csv')
 users <- users[!duplicated(users$userid), ]
 users <- users$userid
 AnnotatedUsersInf <- allData[allData$userid %in% users,]
 #select continous values
 SelData <- AnnotatedUsersInf[, c(5:6, 14, 24, 26:30, 36:37)]
-summary(SelData)
+#summa <- summary(SelData)
+#summa[1:5,]
+#stargazer(summa[1:2,],type = "html", summary = FALSE, rownames = FALSE)
+
+stargazer(SelData)
+
 
 ```
 
@@ -56,15 +63,18 @@ prop.table(table(SelDataCat$locale))
 gender female = 1, male = 0
 ```{r }
 # cut off score as 16
+print('16 cutoff')
 table(AnnotatedUsersInf$gender, AnnotatedUsersInf$CESD_sum > 16)
+print('21 cutoff')
 table(AnnotatedUsersInf$gender, AnnotatedUsersInf$CESD_sum > 21)
+print('16 cutoff')
 table(AnnotatedUsersInf$ethnicity, AnnotatedUsersInf$CESD_sum > 16)
+print('21 cutoff')
 table(AnnotatedUsersInf$ethnicity, AnnotatedUsersInf$CESD_sum > 21)
+print('16 cutoff')
 table(AnnotatedUsersInf$marital_status, AnnotatedUsersInf$CESD_sum > 16)
+print('21 cutoff')
 table(AnnotatedUsersInf$marital_status, AnnotatedUsersInf$CESD_sum > 21)
-
-
-
 
 ```
 
