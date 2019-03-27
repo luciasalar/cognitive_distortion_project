@@ -17,6 +17,8 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r cars}
 library(tidyverse)
+library(psych)
+library(stargazer)
 ```
 
 ## Including Plots
@@ -24,23 +26,30 @@ library(tidyverse)
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-file <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/PostsLyricsTranEmptyAllVar.csv")
+#/home/lucia/phd_work/mypersonality_data
+file <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/PostsLyricsTranEmptyAllVar.csv")
+#this is the final set of sample, removed under age 
+userid <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/FinalSampleUsers.csv")
 
+file <- file[file$userid %in% userid$userid,]
 getCorrelations <- function(file){
   file['userid'] <- NULL
   file['X'] <- NULL
   #ValenceEmptyFreqcorMa <- rcorr.adjust(as.matrix(file))
   ValenceEmptyFreqcorMa <- corr.test(as.matrix(file),use = "pairwise", method="pearson",adjust="holm",alpha=.05)
   print(ValenceEmptyFreqcorMa)
+  return (ValenceEmptyFreqcorMa)
 }
-getCorrelations(file)
+corR <- getCorrelations(file)
+
+#stargazer(corR[1][1])
 ```
 30% positive, 22% negative 18% mix, 24% neutral 
 
 ```{r}
-quotes <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/lyrics/QuotesDetected_all.csv")
+quotes <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/lyrics/QuotesDetected_all.csv")
 quotes <- quotes[, c('text', 'label')]
-posts <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/cleanLabelsReverse.csv")
+posts <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/cleanLabelsReverse.csv")
 quoteVal <- merge(quotes, posts, by = 'text', all.x = T)
 
 quoteOnlyVal<- quoteVal[quoteVal$label == 'quote'|quoteVal$label == 'suspect',]
@@ -53,13 +62,38 @@ round(prop.table(table(posts$negative_ny)),2)
 
 Which type of valence non-originate quote is most correlated with depressive symptoms
 ```{r }
-CESD <- read.csv("/Users/lucia/phd_work/cognitive_distortion/data/important_data/user_scale_post_time2.csv")
+CESD <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/user_scale_post_time2.csv")
 CESD <- CESD[,c('userid', 'CESD_sum')]
 quoteOnlyValCesd <- merge(quoteVal, CESD, by = 'userid', all.x = T)
-#posQuote <- quoteOnlyValCesd[quoteOnlyValCesd$negative_ny == 2 & quoteOnlyValCesd$label == 'quote' |quoteOnlyValCesd$negative_ny == 2 & quoteOnlyValCesd$label == 'suspect',]
+posQuote <- quoteOnlyValCesd[quoteOnlyValCesd$label == 'quote' | quoteOnlyValCesd$label == 'suspect',]
 #posQuote <- posQuote[!duplicated(posQuote$userid),]
 
-data.frame(table(quoteOnlyValCesd$userid))
+#data.frame(table(quoteOnlyValCesd$userid))
+valenceCount <- posQuote %>% count(userid, negative_ny)
+
+getValence <- function (val, countName){
+  Lyric <- valenceCount[valenceCount$negative_ny == val, ]
+  colnames(Lyric) <- c('userid', 'valence', countName)
+  return (Lyric[, c('userid',countName)])
+}
+
+posLyric <- getValence(2, 'pos_count')
+negLyric <- getValence(1, 'neg_count')
+mixLyric <- getValence(3, 'mix_count')
+neuLyric <- getValence(4, 'neu_count')
+
+AllLyrics <- merge(posLyric, negLyric, by = 'userid', all.x = TRUE, all.y = TRUE)  
+AllLyrics <- merge(AllLyrics, mixLyric, by = 'userid', all.x = TRUE, all.y = TRUE) 
+AllLyrics <- merge(AllLyrics, neuLyric, by = 'userid', all.x = TRUE, all.y = TRUE)  
+allLyricsPsy <- merge(AllLyrics, userid, by = 'userid', all.y = TRUE)
+allLyricsPsy[is.na(allLyricsPsy )] <- 0
+
+
+corR <- getCorrelations(allLyricsPsy)
+
+
+
+
 
 ```
 

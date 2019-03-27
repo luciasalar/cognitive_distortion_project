@@ -22,10 +22,10 @@ Continous variables
 ```{r pressure, echo=FALSE}
 # setwd('/Users/lucia/phd_work/cognitive_distortion/') 
 # '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
-allData <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
+allData <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
 allData <- subset(allData, age > 17 | is.na(age))
 #merge with annotated users
-users <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/important_data/twoM_newLabels80P.csv')
+users <- read.csv('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/twoM_newLabels80P.csv')
 users <- users[!duplicated(users$userid), ]
 users <- users$userid
 AnnotatedUsersInf <- allData[allData$userid %in% users,]
@@ -34,6 +34,8 @@ SelData <- AnnotatedUsersInf[, c(5:6, 14, 24, 26:30, 36:37)]
 #summa <- summary(SelData)
 #summa[1:5,]
 #stargazer(summa[1:2,],type = "html", summary = FALSE, rownames = FALSE)
+data <- AnnotatedUsersInf[, c('userid','CESD_sum', 'swl')]
+write.csv(data, '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/FinalSampleUsers.csv')
 
 stargazer(SelData)
 
