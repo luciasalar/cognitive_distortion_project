@@ -8,20 +8,34 @@ def getTransitions(LyricObject):
     emptyTran = 0
     lyricsTran = 0
     lyricsEmpty = 0
+    Original = 0
+    LyricsOriginal = 0 
+    OriginalEmpty = 0 
     preValence = 0
     for valence in LyricObject:
     #these are self transition states
         if valence == 0 and preValence == 0:
             emptyTran = emptyTran + 1
+            
         elif valence == 1 and preValence == 1:
             lyricsTran = lyricsTran + 1
-        elif valence == 0 and preValence == 1:
-            lyricsEmpty = lyricsEmpty + 1
-        elif valence == 1 and preValence == 0:
+            
+        elif (valence == 0 and preValence) == 1 or (valence == 1 and preValence == 0):
             lyricsEmpty = lyricsEmpty + 1
             
+        elif valence == 2 and preValence == 2:
+            Original = Original + 1
+            
+        elif (valence == 1 and preValence == 2) or  (valence == 2 and preValence == 1):
+            LyricsOriginal = LyricsOriginal + 1
+            
+        elif (valence == 2 and preValence == 0) or  (valence == 0 and preValence == 2):
+            OriginalEmpty = OriginalEmpty + 1 
+            
         preValence = valence
-    return [emptyTran, lyricsTran, lyricsEmpty]
+  
+    return [emptyTran, lyricsTran, lyricsEmpty, Original, LyricsOriginal, OriginalEmpty, preValence]
+
 
 def getLyricsVector(df):
     valenceVec = {}
@@ -92,8 +106,10 @@ def getUserTransitions(valencVec):
 def getStats(valenceVec, saveStatsPath):
 	empty = countLyrics(valenceVec,0)
 	lyrics = countLyrics(valenceVec,1)
-	df = pd.DataFrame(np.array(empty).reshape(77,1), columns=['emptyDays'])
+	Original = countLyrics(valenceVec,2)
+	df = pd.DataFrame(np.array(empty).reshape(len(Original),1), columns=['emptyDays'])
 	df['lyrics'] = lyrics
+	df['original'] = Original 
 	df['userid'] = valenceVec.keys()
 	dfStats = df.describe()
 	dfStats.to_csv(saveStatsPath)
@@ -110,7 +126,7 @@ def saveTransition(filePath, TransitionStates):
 def TransformProb(inputFile):
 	file = pd.read_csv(inputFile)
 	file = file.transpose()
-	file.columns = ['emptyTrans','lyricsTran', 'lyricsEmpty']
+	file.columns = ['emptyTran', 'lyricsTran', 'lyricsEmpty', 'Original', 'LyricsOriginal', 'OriginalEmpty', 'preValence']
 	file['allTrans'] = file.sum(axis=1) 
 	Tranprob = file.apply(lambda x: x/file.iloc[:,-1])
 	Tranprob['userid'] = Tranprob.index
@@ -128,24 +144,35 @@ def getCorMatrix(frequency, Tranprob, pathToMerge, pathToTranMatrix, pathToFreMa
 	corMatrix = compareFreq.corr()
 	corMatrix.to_csv(pathToFreMatrix)
 #merge files
+#path = '/Users/lucia/phd_work/cognitive_distortion/'
 path = '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
-time = pd.read_csv(path + '/data/important_data/twoM_newLabels2.csv')
-ids = pd.read_csv(path + '/data/important_data/Id80PerRetained.csv')
+AllP = pd.read_csv(path + '/data/important_data/twoM_newLabels2.csv')
+ids = pd.read_csv(path + '/data/important_data/FinalSampleUsers.csv')
+#remove underage and ppl with less than 80% of posts retained
+AllP  = AllP [AllP ['userid'].isin(ids['userid'])]
+print(AllP.shape)
 lyrics = pd.read_csv(path + '/data/important_data/lyrics/QuotesDetected_all.csv')
 lyrics = lyrics[['text','label']]
-time2 = pd.merge(lyrics, time, on='text', how = 'left')
-time = time2[['text', 'userid', 'time', 'time_diff', 'id', 'label']]
+time = pd.merge(lyrics, AllP, on='text', how = 'right')
+print(time.shape)
+time['label'] = time['label'].replace(np.nan, 'NotQuote', regex=True)
+time = time[['text', 'userid', 'time', 'time_diff', 'id', 'label']]
 #recode
-time['label'].replace(['NotQuote','quote','suspect'],[0,1,1],inplace=True)
+time['label'].replace(['NotQuote','quote','suspect'],[2,1,1],inplace=True)
+
 #rank time
 time['time'] = time['time'].apply(lambda x: x.split()[0])
 time['time'] = time['time'].apply(lambda x: datetime.strptime(x, '%d/%m/%Y'))
 time = time.sort_values(by=['userid','time_diff','label'],  ascending=False)
 
 lyricsVec = getLyricsVector(time)
+
+
+
+
 #get transition states
 TransitionStates = getUserTransitions(lyricsVec)  
-#get frequency table
+#get frequency stats table
 saveStatsPath = path + 'newScripts/moodVector/moodVectorsData/lyricsPostEmptyStats.csv'
 frequency = getStats(lyricsVec, saveStatsPath)
 #save transition states
