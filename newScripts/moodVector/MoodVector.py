@@ -193,7 +193,7 @@ def getFrequencyCor(ValenceVec,savePath1,savePath2,alldata):
 	    empty.append(valenceVec[userid].count(0))
 	    useridL.append(userid)
 	#merge all the lists to data frame
-	df = pd.DataFrame(np.array(negativeD).reshape(74,1), columns=['NegativePosts'])
+	df = pd.DataFrame(np.array(negativeD).reshape(len(negativeD),1), columns=['NegativePosts'])
 	df['PositivePosts'] = positiveD
 	df['NeutralPosts'] = neutralD
 	df['MixedPosts'] = mixed
@@ -209,7 +209,9 @@ def getFrequencyCor(ValenceVec,savePath1,savePath2,alldata):
 path = '/Users/lucia/phd_work/cognitive_distortion'
 #this file contain users with 80% of posts retained after cleaning foreign language
 time = pd.read_csv(path + '/data/important_data/cleanLabelsReverse.csv')
-
+ids = pd.read_csv(path + '/data/important_data/FinalSampleUsers.csv')
+#remove underage and ppl with less than 80% of posts retained
+time  = time[time['userid'].isin(ids['userid'])]
 # sort posts according to time
 time = SortTime(time)
 
