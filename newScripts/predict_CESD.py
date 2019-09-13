@@ -19,17 +19,18 @@ from scipy import stats
 from sklearn.metrics import precision_recall_fscore_support
 import datetime
 import csv
+import numpy as np
+from sklearn.model_selection import LeaveOneOut
+import pickle
 
 
-#merge with CESD
-path1 = '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/data/important_data/'
 
 def merge_cesd_valence(path_to_files, valence_file):
     '''read and merge cesd and valence'''
     cesd = pd.read_csv(path_to_files + 'adjustedCESD.csv')
     cesd_sum = cesd[['userid', 'cesd_sum']]
-    valence_vec = pd.read_csv(path_to_files + valence_file)
-    val_cesd = pd.merge(valence_vec, cesd_sum, how='left', on='userid')
+    #valence_vec = pd.read_csv(path_to_files + valence_file)
+    val_cesd = pd.merge(valence_file, cesd_sum, how='left', on='userid')
     val_cesd = val_cesd.drop_duplicates(subset='userid', keep="first")
 
     return val_cesd
@@ -73,8 +74,26 @@ def SVM_classifier(X_train, y_train, y_test, X_test):
     y_true, y_pred = y_test, grid_search.predict(X_test)
     return y_true, y_pred, grid_search
 
+def RF_classifier(X_train, y_train, y_test, X_test): 
+    '''train svm'''
+    cv_fold = StratifiedKFold(n_splits=3, random_state=0)
+    rf = make_pipeline(RandomForestClassifier())
+    parameters = [{'randomforestclassifier__max_features': ['auto','sqrt','log2'], 
+                   'randomforestclassifier__max_leaf_nodes': [50,100,300,500,1000],
+                   'randomforestclassifier__max_depth':[5,10,15,20],
+                   'randomforestclassifier__n_estimators':[50,100,300,500]}]
 
-def store_results(path_to_save, y_true, y_pred, grid_search, days_for_model):
+    grid_search_item = GridSearchCV(rf,
+                                    param_grid=parameters,
+                                    cv=cv_fold,
+                                    scoring='accuracy',
+                                    n_jobs=-1)
+    grid_search = grid_search_item.fit(X_train, y_train)
+    y_true, y_pred = y_test, grid_search.predict(X_test)
+    return y_true, y_pred, grid_search
+
+
+def store_results(path_to_save, y_true, y_pred, grid_search, days_for_model, path_to_valencefile):
     report = precision_recall_fscore_support(y_true, y_pred)
     precision, recall, fscore, support=precision_recall_fscore_support(y_true, y_pred, average='macro')
 
@@ -86,15 +105,54 @@ def store_results(path_to_save, y_true, y_pred, grid_search, days_for_model):
 
     f = open(path_to_save +'result.csv', 'a')
     writer_top = csv.writer(f, delimiter = ',',quoting=csv.QUOTE_MINIMAL)
-    writer_top.writerow(['classifer'] + ['best_scores'] + ['best_parameters'] + ['classification_report'] + ['marco_precision']+['marco_recall']+['marco_fscore']+['support']+['runtime']+['affect_days'])
-    result_row = [[grid_search.estimator.steps[0][0], grid_search.best_score_, grid_search.best_params_, report, precision, recall, fscore, support, str(datetime.datetime.now()), days_for_model]]
+    writer_top.writerow(['classifer'] + ['best_scores'] + ['best_parameters'] + ['classification_report'] + ['marco_precision']+['marco_recall']+['marco_fscore']+['support']+['runtime']+['affect_days']+['vectorType'])
+    result_row = [[grid_search.estimator.steps[0][0], grid_search.best_score_, grid_search.best_params_, report, precision, recall, fscore, support, str(datetime.datetime.now()), days_for_model, path_to_valencefile.split('/')[-1]]]
     writer_top.writerows(result_row)
     f.close
 
-def run_model(path_to_files, valence_file, days_for_model): 
+def read_valence_vector(path_to_valencefile):
+    '''convert vector pickle to df'''
+    moodVec = pickle.load(open(path_to_valencefile, "rb" ))
+    moodVec_df = pd.DataFrame.from_dict(moodVec, orient='index').reset_index().rename(columns={'index':'userid'})
+    return moodVec_df
+
+
+def run_model(path_to_files, path_to_valencefile, days_for_model): 
+    valence_file = read_valence_vector(path_to_valencefile)
     all_cases = merge_cesd_valence(path_to_files, valence_file)
     X_train, X_test, y_train, y_test = get_train_test(all_cases, days_for_model)
-    y_true, y_pred, grid_search = SVM_classifier(X_train, y_train, y_test, X_test)
-    store_results(path_to_files + 'results/', y_true, y_pred, grid_search, days_for_model)
+    #y_true, y_pred, grid_search = SVM_classifier(X_train, y_train, y_test, X_test)
+    #store_results(path_to_files + 'results/', y_true, y_pred, grid_search, days_for_model)
+    y_true, y_pred, grid_search = RF_classifier(X_train, y_train, y_test, X_test)
+    store_results(path_to_files + 'results/', y_true, y_pred, grid_search, days_for_model, path_to_valencefile)
 
-run_model(path1, 'ValenceVec_Norm_Mix.csv', 31)
+
+#merge with CESD
+path_valence = '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/MoodVecDes1.pickle'
+path_to_psy = '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/'
+run_model(path_to_psy, path_valence, 10)
+
+m  = read_valence_vector(path_valence)
+
+#all_cases = merge_cesd_valence(path1, 'ValenceVec_Norm_Mix.csv')
+#X = all_cases.iloc[:, 1:61]  #here you can customize the days
+#y = all_cases["cesd_sum"]   
+
+all_psy =  pd.read_csv(path_to_psy + 'ValenceEmptyFreqAllVar.csv')
+selected_psy = all_psy[['userid', 'ope', 'con', 'ext', 'agr', 'neu', 'swl', 'CESD_sum']]
+
+#implement loop the grid, loop day options and classifiers
+
+#add personality and swl
+
+
+# loo = LeaveOneOut()
+# loo.get_n_splits(X)
+# print(loo)
+# LeaveOneOut()
+
+# for train_index, test_index in loo.split(X):
+#     print("TRAIN:", train_index, "TEST:", test_index)
+#     X_train, X_test = X[train_index], X[test_index]
+#     y_train, y_test = y[train_index], y[test_index]
+#     print(X_train, X_test, y_train, y_test)
