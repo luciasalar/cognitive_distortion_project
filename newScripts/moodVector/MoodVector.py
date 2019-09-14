@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import statsmodels.api as sm
 import csv
-from datetime import datetime
+import datetime
+#from datetime import datetime
 import pickle
 
 
@@ -178,7 +179,7 @@ def getCorMatrix(savePath, savePath2, alldata, transitionMatrix):
 	compare.to_csv(savePath2)
 
 #here we get frequency matrix for the valence vector
-def getFrequencyCor(ValenceVec,savePath1,savePath2,alldata):
+def getFrequencyCor(valenceVec,savePath1,savePath2,alldata):
 	negativeD = []
 	positiveD = []
 	neutralD = []
@@ -205,47 +206,47 @@ def getFrequencyCor(ValenceVec,savePath1,savePath2,alldata):
 	corMatrix = compareFreq.corr()
 	corMatrix.to_csv(savePath2)
 
+if __name__ == '__main__':
+    path = '/Users/lucia/phd_work/cognitive_distortion'
+    #this file contain users with 80% of posts retained after cleaning foreign language
+    time = pd.read_csv(path + '/data/important_data/cleanLabelsReverse.csv')
+    ids = pd.read_csv(path + '/data/important_data/FinalSampleUsers.csv')
+    #remove underage and ppl with less than 80% of posts retained
+    time  = time[time['userid'].isin(ids['userid'])]
+    # sort posts according to time
+    time = SortTime(time)
 
-path = '/Users/lucia/phd_work/cognitive_distortion'
-#this file contain users with 80% of posts retained after cleaning foreign language
-time = pd.read_csv(path + '/data/important_data/cleanLabelsReverse.csv')
-ids = pd.read_csv(path + '/data/important_data/FinalSampleUsers.csv')
-#remove underage and ppl with less than 80% of posts retained
-time  = time[time['userid'].isin(ids['userid'])]
-# sort posts according to time
-time = SortTime(time)
-
-print('get valence vector')
-users = user_obj(time['userid'])
-users2 = getValenceVector(users, time)
+    print('get valence vector')
+    users = user_obj(time['userid'])
+    users2 = getValenceVector(users, time)
 
 
-print('save objects')
-savePath = path + '/newScripts/moodVector/moodVectorsData/MoodVecDes1.pickle'
-with open(savePath, 'wb') as handle:
-    pickle.dump(users2, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    print('save objects')
+    savePath = path + '/newScripts/moodVector/moodVectorsData/MoodVecDes1.pickle'
+    with open(savePath, 'wb') as handle:
+        pickle.dump(users2, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-savePath2 = path + '/newScripts/moodVector/moodVectorsData/MoodVec.csv'
-saveCSV(users2, savePath2)
+    savePath2 = path + '/newScripts/moodVector/moodVectorsData/MoodVec.csv'
+    saveCSV(users2, savePath2)
 
-print('compute transition states probability')
+    print('compute transition states probability')
 
-TransitionStates = getUserTransitions(users2)  
+    TransitionStates = getUserTransitions(users2)  
 
-print('save transition state objects')
-savePath = path + '/newScripts/moodVector/moodVectorsData/MoodTrans.pickle'
-with open(savePath, 'wb') as handle:
-    pickle.dump(TransitionStates, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    print('save transition state objects')
+    savePath = path + '/newScripts/moodVector/moodVectorsData/MoodTrans.pickle'
+    with open(savePath, 'wb') as handle:
+        pickle.dump(TransitionStates, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-savePath2 = path + '/newScripts/moodVector/moodVectorsData/MoodTrans.csv'
-saveCSV(TransitionStates, savePath2) 
+    savePath2 = path + '/newScripts/moodVector/moodVectorsData/MoodTrans.csv'
+    saveCSV(TransitionStates, savePath2) 
 
-Tranprob = computeTrans(savePath2) 
-print('get correlation corMatrix')
-savePath3 = path + '/newScripts/moodVector/moodVectorsData/MoodVecCor.csv'
-savePath4 = path + '/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv'
-allData = pd.read_csv( path + '/data/important_data/user_scale_post_time2.csv')
-getCorMatrix(savePath3, savePath4, allData, Tranprob)
+    Tranprob = computeTrans(savePath2) 
+    print('get correlation corMatrix')
+    savePath3 = path + '/newScripts/moodVector/moodVectorsData/MoodVecCor.csv'
+    savePath4 = path + '/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv'
+    allData = pd.read_csv( path + '/data/important_data/user_scale_post_time2.csv')
+    getCorMatrix(savePath3, savePath4, allData, Tranprob)
 
 
 
