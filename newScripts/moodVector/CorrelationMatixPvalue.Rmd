@@ -12,14 +12,17 @@ require(psych)
 #devtools::install_github("mdscheuerell/muti")
 require(muti)
 require(gam)
+require(jmuOutlier)
+require(rlist)
 ```
 
 ## valenceVec frequency with empty days and all variables
 ```{r read file}
-
-file1 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyFreqAllVar.csv")
+#/Users/lucia/phd_work/cognitive_distortion/
+file1 <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyFreqAllVar.csv")
 
 getCorrelations <- function(file){
+  #get correlations between vars
   file['userid'] <- NULL
   file['X'] <- NULL
   #ValenceEmptyFreqcorMa <- rcorr.adjust(as.matrix(file))
@@ -27,7 +30,17 @@ getCorrelations <- function(file){
   print(ValenceEmptyFreqcorMa)
 }
 
-getCorrelations(file1)
+getPermutation <- function(file, polarity_cols, psy_cols){
+  #calculate permutation p
+  pvalue_l <- list()
+  for (col in names(file[polarity_cols])){
+    for (psy in names(file[psy_cols])){
+      result <- perm.cor.test(file[[col]], file[[psy]], method='pearson')
+      pvalue_l[[paste(col, psy)]] <- result$p.value
+  }
+} 
+return (pvalue_l)
+}
 
 
 getRegression <- function(file, regFile){
@@ -36,40 +49,45 @@ getRegression <- function(file, regFile){
   summary(g)
 }
 
+getCorrelations(file1)
+permutation_result <- getPermutation(file1, 2:6, 8:14)
+
 regFile = file[2:6]
 getRegression(file, regFile)
 
 ```
 
-#post valence transition with empty days
+#post valence transition without empty days
 
 ```{r pressure, echo=FALSE}
 
-file2 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv")
+file2 <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv")
 getCorrelations(file2)
+permutation_result2 <- getPermutation(file2, 2:11, 14:20)
 
 ```
 
 # mood transitions
 ```{r }
-file3 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv")
+file3 <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/MoodVecAllVar.csv")
 getCorrelations(file3)
+permutation_result3 <- getPermutation(file3, 2:16, 19:25)
 
 ```
 
-#post valence with empty days
+#post valence transition with empty days
 ```{r }
-file4 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyAllVar.csv")
-getCorrelations(file3)
-
-
-```
-
-```{r }
-
-file4 <- read.csv("/Users/lucia/phd_work/cognitive_distortion/newScripts/moodVector/moodVectorsData/PostsLyricsTranEmptyAllVar.csv")
+file4 <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/ValenceEmptyAllVar.csv")
 getCorrelations(file4)
+permutation_result4 <- getPermutation(file4, 2:16, 19:25)
 
+```
+
+```{r }
+
+file5 <- read.csv("/home/lucia/phd_work/mypersonality_data/cognitive_distortion/newScripts/moodVector/moodVectorsData/PostsLyricsTranEmptyAllVar.csv")
+getCorrelations(file5)
+permutation_result5 <- getPermutation(file4, 2:8, 11:17)
 
 ```
 

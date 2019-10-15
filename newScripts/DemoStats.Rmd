@@ -9,24 +9,30 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-#This file shows the basic demographic information from the annotated users (N= 77)
-```{r cars}
+require(ggplot2)
+library(plotly)
+library(ggpubr)
+require(reshape2)
+library(plyr)
+library(Hmisc)
 library(tidyverse)
 library(stargazer)
 ```
+
+#This file shows the basic demographic information from the annotated users (N= 77)
+
 Id80PerRetained.csv userid with more than 80% posts retained (we removed posts with foreign language that we can't understand)
 We have 70 participants in total after removing them 
 Continous variables
 Note: posts count and day spread in here is from the whole sample. Not our subset sample.
 ```{r pressure, echo=FALSE}
 # setwd('/Users/lucia/phd_work/cognitive_distortion/') 
+setwd('/home/lucia/phd_work/mypersonality_data/cognitive_distortion/') 
 # '/home/lucia/phd_work/mypersonality_data/cognitive_distortion/'
-allData <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/important_data/user_scale_post_time2.csv')
+allData <- read.csv('data/important_data/user_scale_post_time2.csv')
 allData <- subset(allData, age > 17 | is.na(age))
 #merge with annotated users
-users <- read.csv('/Users/lucia/phd_work/cognitive_distortion/data/important_data/twoM_newLabels80P.csv')
+users <- read.csv('data/important_data/twoM_newLabels80P.csv')
 users <- users[!duplicated(users$userid), ]
 users <- users$userid
 AnnotatedUsersInf <- allData[allData$userid %in% users,]
@@ -42,6 +48,11 @@ stargazer(SelData)
 
 
 ```
+
+
+
+
+
 
 Check skewness of variables
 ```{r }
@@ -80,6 +91,116 @@ wilcox.test(ext ~ both$group, data = both)
 
 ```
 
+get gaussian
+```{r}
+sd(SelData$CESD_sum)
+p <- ggplot(SelData) +
+    geom_density(aes(x=CESD_sum), fill="#ADD8E6", size=1) +
+    labs(title="CESD Score") +
+    theme(text = element_text(size=20))+
+    xlim(-10,60) +
+    xlab("Normal Dist. mean=23.79, sd=12") +
+    ylab("Density") +
+    geom_vline(xintercept=22, linetype="longdash", colour="red") +
+    annotate("text", x=0, y=0.02, label= "low score", size = 6) +
+    annotate("text", x = 50, y=0.02, label= "high score", size = 6) 
+p
+#stat_function(fun = dnorm, args = list(mean = mean(SelData$CESD_sum), sd = sd(SelData$CESD_sum)))
+
+```
+
+get gaussian, other variables
+```{r}
+SelData$group <- 'whole_sample'
+high$group <- 'high_CESD'
+low$group <- 'low_CESD'
+
+plot_density_data <- function(SelData, high, low, var){
+  swl_whole <- SelData[,c(var,'group')]
+  swl_high <- high[,c(var,'group')]
+  swl_low <- low[,c(var,'group')]
+  swl_data <- rbind(swl_low, swl_high)
+  swl_data <- rbind(swl_whole, swl_data)
+  return (swl_data)
+}
+  
+
+  # Overlaid histograms with means
+plot_density <- function(var, plot_density_data, var_mean, title, x_axis_start, x_axis_end){
+  p <- ggplot(plot_density_data, aes(x=var, color=group)) +
+      xlim(x_axis_start, x_axis_end) +
+      labs(title=title) + 
+      geom_density( alpha=.5, position="identity") +
+      theme(axis.text.x = element_text(size=15), axis.text.y = element_text(size=15),
+            axis.title.x = element_blank())+
+      geom_vline(data=var_mean, aes(xintercept=var.mean,  colour=group),
+                 linetype="dashed", size=1)
+  
+  return (p)
+}
+
+
+data <- plot_density_data(SelData, high, low, 'swl')
+var_mean <- ddply(data, "group", summarise, var.mean=mean(swl))
+swl_plot <- plot_density(data$swl, data, var_mean, 'SWL', -1, 9)
+swl_plot
+
+data <- plot_density_data(SelData, high, low, 'ope')
+var_mean <- ddply(data, "group", summarise, var.mean=mean(ope))
+ope_plot <- plot_density( data$ope, data, var_mean, 'openness', 2, 6)
+ope_plot 
+
+data <- plot_density_data(SelData, high, low, 'con')
+var_mean <- ddply(data, "group", summarise, var.mean=mean(con))
+con_plot <- plot_density(data$con, data, var_mean, 'conscientiousness', 0, 6)
+con_plot
+
+data <- plot_density_data(SelData, high, low, 'ext')
+var_mean <- ddply(data, "group", summarise, var.mean=mean(ext))
+ext_plot <- plot_density(data$ext, data, var_mean, 'extroversion', 0, 6)
+ext_plot 
+
+data <- plot_density_data(SelData, high, low, 'agr')
+var_mean <- ddply(data, "group", summarise, var.mean=mean(agr))
+agr_plot <- plot_density(data$agr, data, var_mean, 'agreeableness', 2, 6)
+agr_plot
+
+data <- plot_density_data(SelData, high, low, 'neu')
+var_mean <- ddply(data, "group", summarise, var.mean=mean(neu))
+neu_plot <- plot_density(data$neu, data, var_mean, 'neuroticism', 0, 6)
+neu_plot
+
+ggarrange(ope_plot, con_plot, ext_plot, agr_plot, neu_plot, swl_plot,
+          labels = c("A", "B", "C",  "D", "E", "F"),
+          ncol = 2, nrow = 3, common.legend = TRUE)
+```
+
+
+get boxplot#
+```{r}
+get_personality_plot <- function(personality_matrix, title){
+  plotVar <- gather(personality_matrix, personality_dimentions)
+  plotVar$personality_dimentions <- factor(plotVar$personality_dimentions)
+  
+  p1 <- ggplot(plotVar, aes(x=personality_dimentions, y=value, fill = personality_dimentions)) + geom_boxplot() +
+    ylab('score')+
+    ggtitle(title)+
+      guides(fill=FALSE) + coord_flip()
+  #p1 <- ggplotly(p1)
+  return (p1)
+}
+
+p1  <- get_personality_plot(SelData[5:10], 'Personality score from whole sample')
+p2  <- get_personality_plot(high[5:10], 'Personality score from high group')
+p3  <- get_personality_plot(low[5:10], 'Personality score from low group')
+
+
+
+
+ggarrange(p1, p2, p3,
+          labels = c("A", "B", "C"),
+          ncol = 2, nrow = 3)
+```
 
 
 
@@ -119,5 +240,60 @@ table(AnnotatedUsersInf$marital_status, AnnotatedUsersInf$CESD_sum > 21)
 
 ```
 
+heatmap
+```{r}
+ get_lower_tri<-function(cormat){
+    cormat[upper.tri(cormat)] <- NA
+    return(cormat)
+  }
+
+get_melted <- function(data){
+  cormat <- round(rcorr(as.matrix(SelData[5:11][sapply(SelData[5:11],is.numeric)]))$r,2)
+ # cormat <- round(cor(data),2)
+  upper_cormat <- get_lower_tri(cormat)
+  melted_cormat <- melt(upper_cormat, na.rm = TRUE)
+  return(melted_cormat)
+}
+
+get_melted_p <- function(data){
+  cormat.p <-  round(rcorr(as.matrix(SelData[5:11][sapply(SelData[5:11],is.numeric)]))$P, 3)
+ # cormat <- round(cor(data),2)
+  upper_cormat <- get_lower_tri(cormat.p)
+  melted_cormat <- melt(upper_cormat, na.rm = TRUE)
+  return(melted_cormat)
+}
+  
+get_cor_plot <- function(melted_cormat){
+    plot<- ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+    geom_tile()+
+     scale_fill_gradient2(low = "#F1D302", high = "#235789", mid = "white", 
+   midpoint = 0, limit = c(-1,1), space = "Lab", 
+   name="Pearson\nCorrelation") +
+   theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+    size = 16, hjust = 1), axis.text.y = element_text(vjust = 1, 
+    size = 16, hjust = 1), axis.title.x = element_blank(), axis.title.y = element_blank(), legend.justification = c(1, 0), legend.position = c(0.4, 0.7), legend.direction = "horizontal") +
+    geom_text(aes(Var1, Var2, label = value), color = "black", size = 7) +
+    geom_text(aes(label = pvalue), color = "black", size = 5, vjust = 2)
+     
+  return (plot)
+}
+
+recode_p <- function(p_value){
+  p_value[p_value <= 0.05] <- "*"
+  p_value[p_value <= 0.01] <- "**"
+  p_value[p_value <= 0.001] <- "***"
+  p_value[p_value > 0.05] <- " "
+  return (p_value)
+}
+
+melted <- get_melted(SelData[5:11])
+melted_p <- get_melted_p(SelData[5:11])
+melted_combine <- merge(melted, melted_p, by = c('Var1', 'Var2'))
+colnames(melted_combine) <- c('Var1', 'Var2', 'value','pvalue') 
 
 
+melted_combine$pvalue <- recode_p(melted_combine$pvalue)
+get_cor_plot(melted_combine)
+
+
+```

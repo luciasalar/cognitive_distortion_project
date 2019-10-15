@@ -135,44 +135,45 @@ def getFrequencyCor(ValenceVec,savePath1,savePath2,alldata):
 	corMatrix.to_csv(savePath2)
 
 
+if __name__ == '__main__':
 
-path = '/Users/lucia/phd_work/cognitive_distortion'
-#this file contain users with 80% of posts retained after cleaning foreign language
-time = pd.read_csv(path + '/data/important_data/cleanLabelsReverse.csv')
-ids = pd.read_csv(path + '/data/important_data/FinalSampleUsers.csv')
-#remove underage and ppl with less than 80% of posts retained
-time  = time[time['userid'].isin(ids['userid'])]
-# sort posts according to time
-time = SortTime(time)
+    path = '/Users/lucia/phd_work/cognitive_distortion'
+    #this file contain users with 80% of posts retained after cleaning foreign language
+    time = pd.read_csv(path + '/data/important_data/cleanLabelsReverse.csv')
+    ids = pd.read_csv(path + '/data/important_data/FinalSampleUsers.csv')
+    #remove underage and ppl with less than 80% of posts retained
+    time  = time[time['userid'].isin(ids['userid'])]
+    # sort posts according to time
+    time = SortTime(time)
 
 
-print('get valence vector')
-valenceVec = getValenceVector(time)
+    print('get valence vector')
+    valenceVec = getValenceVector(time)
 
-print('get TransitionStates')
-TransitionStates = getUserTransitions(valenceVec)  
+    print('get TransitionStates')
+    TransitionStates = getUserTransitions(valenceVec)  
 
-print('save objects')
-savePath = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmpty.pickle'
-with open(savePath, 'wb') as handle:
-    pickle.dump(TransitionStates, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    print('save objects')
+    savePath = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmpty.pickle'
+    with open(savePath, 'wb') as handle:
+        pickle.dump(TransitionStates, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-savePath2 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmpty.csv'
-saveCSV(TransitionStates, savePath2)
+    savePath2 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmpty.csv'
+    saveCSV(TransitionStates, savePath2)
 
-print('compute transition states probability')
-#we compute the pobability by dividing the transition with number of all posts
-Tranprob = computeTrans(savePath2)
+    print('compute transition states probability')
+    #we compute the pobability by dividing the transition with number of all posts
+    Tranprob = computeTrans(savePath2)
 
-print('get correlation corMatrix')
-savePath3 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyCor.csv'
-savePath4 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv'
-allData = pd.read_csv( path + '/data/important_data/user_scale_post_time2.csv')
-getCorMatrix(savePath3, savePath4, allData, Tranprob)
+    print('get correlation corMatrix')
+    savePath3 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyCor.csv'
+    savePath4 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyAllVar.csv'
+    allData = pd.read_csv( path + '/data/important_data/user_scale_post_time2.csv')
+    getCorMatrix(savePath3, savePath4, allData, Tranprob)
 
-savePath5 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyFreqAllVar.csv'
-savePath6 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyFreqCor.csv'
-getFrequencyCor(valenceVec,savePath5, savePath6,allData)
+    savePath5 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyFreqAllVar.csv'
+    savePath6 = path + '/newScripts/moodVector/moodVectorsData/ValenceNoEmptyFreqCor.csv'
+    getFrequencyCor(valenceVec,savePath5, savePath6,allData)
 
 
 
